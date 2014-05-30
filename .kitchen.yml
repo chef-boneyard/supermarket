@@ -12,7 +12,7 @@ platforms:
 
 suites:
   - name: default
-    data_bags_path: ../../data_bags
+    data_bags_path: data_bags
     role_path: roles
     run_list:
       - role[redis]
