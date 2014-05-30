@@ -1,0 +1,29 @@
+{
+  "id": "supermarket",
+  "description": "This is an example data bag that is used to standup Supermarket if you use this please please please change the default values for security sake.",
+  "secret_key_base": "someSecret",
+  "revision": "master",
+  "sentry_url": "someSentryUrl",
+  "redis_url": "redis://127.0.0.1:6379",
+  "database": {
+  },
+  "smtp": {
+    "address": "someaddress.com",
+    "port": 123,
+    "user": "someUser",
+    "password": "somePassword"
+  },
+  "github": {
+    "key": "someKey",
+    "secret": "someSecret"
+  },
+  "chef_oauth2": {
+    "app_id": "someAppID",
+    "secret": "someSecret"
+  },
+  "curry": {
+    "github_access_token": "someAccessToken",
+    "cla_location": "claUrl",
+    "pubsubhubbub_secret": "someSecret"
+  }
+}
