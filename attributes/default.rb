@@ -29,3 +29,4 @@ default['supermarket']['home'] = '/srv/supermarket'
 default['supermarket']['host'] = 'supermarket.getchef.com'
 default['supermarket']['sidekiq']['concurrency'] = '25'
 default['supermarket']['database']['pool'] = 25
+default['supermarket']['data_bag'] = 'supermarket'

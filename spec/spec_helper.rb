@@ -13,7 +13,7 @@ def configure_chef
 end
 
 def upload_databag(name, item)
-  filename = File.join('.', '..', '..', 'data_bags', name, "#{item}.json")
+  filename = File.join('.', 'data_bags', name, "#{item}.json")
 
   databag = Chef::DataBag.new
   databag.name(name)
