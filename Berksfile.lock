@@ -4,4 +4,4 @@ DEPENDENCIES
     metadata: true
 
 GRAPH
-  supermarket (1.2.5)
+  supermarket (1.2.7)
