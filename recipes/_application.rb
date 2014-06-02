@@ -19,7 +19,7 @@
 
 include_recipe 'supermarket::_apt'
 
-app = data_bag_item(:apps, 'supermarket')
+app = data_bag_item(:apps, node['supermarket']['data_bag'])
 
 deploy_revision node['supermarket']['home'] do
   repo 'https://github.com/opscode/supermarket.git'

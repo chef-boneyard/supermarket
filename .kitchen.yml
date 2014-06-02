@@ -13,8 +13,5 @@ platforms:
 suites:
   - name: default
     data_bags_path: data_bags
-    role_path: roles
     run_list:
-      - role[redis]
-      - role[database]
-      - role[web]
+      - recipe[supermarket::default]
