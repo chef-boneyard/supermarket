@@ -61,6 +61,12 @@ deploy_revision node['supermarket']['home'] do
       cwd release_path
       command 'bundle exec rake assets:precompile'
     end
+
+    execute 'sitemap:refresh' do
+      environment 'RAILS_ENV' => 'production'
+      cwd release_path
+      command 'bundle exec rake sitemap:refresh'
+    end
   end
 
   notifies :restart, 'service[unicorn]'
