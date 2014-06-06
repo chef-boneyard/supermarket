@@ -41,11 +41,18 @@ package 'ruby2.0-dev'
   end
 end
 
+# the bundle contains gems that need to compile C extensions
+package 'build-essential'
+
 # Nokogiri requires XML
 package 'libxslt-dev'
 package 'libxml2-dev'
 
 # SQLite3 requires development headers
 package 'libsqlite3-dev'
+
+# `pg` requires development headers; this allows the application to deploy (bundle)
+# when postgresql isn't running on the same node.
+package 'libpq-dev'
 
 gem_package 'bundler'
