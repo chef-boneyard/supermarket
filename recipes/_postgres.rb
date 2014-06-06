@@ -52,6 +52,10 @@ execute 'postgres[extensions][pg_trgm]' do
   not_if "echo '\dx' | psql #{node['postgres']['database']} | grep pg_trgm"
 end
 
+directory '/etc/postgresql/9.1/main' do
+  recursive true
+end
+
 template '/etc/postgresql/9.1/main/pg_hba.conf' do
   notifies :restart, 'service[postgresql]', :immediately
 end
