@@ -21,7 +21,6 @@ include_recipe 'supermarket::_apt'
 
 package 'postgresql'
 package 'postgresql-contrib'
-package 'libpq-dev'
 
 execute 'postgres[user]' do
   user 'postgres'

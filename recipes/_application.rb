@@ -18,6 +18,7 @@
 #
 
 include_recipe 'supermarket::_apt'
+include_recipe 'supermarket::_ruby'
 
 app = data_bag_item(:apps, node['supermarket']['data_bag'])
 
@@ -36,7 +37,7 @@ deploy_revision node['supermarket']['home'] do
   before_migrate do
     %w(pids log system public).each do |dir|
       directory "#{node['supermarket']['home']}/shared/#{dir}" do
-        mode 0777
+        mode 0755
         recursive true
       end
     end

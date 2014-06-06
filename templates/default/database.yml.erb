@@ -2,6 +2,9 @@ production:
   <% if @app['database']['host'] %>
   host: <%= @app['database']['host'] %>
   <% end %>
+  <% if @app['database']['port'] %>
+  port: <%= @app['database']['port'] %>
+  <% end %>
   username: <%= @app['database']['username'] || node['postgres']['user'] %>
   <% if @app['database']['password'] %>
   password: <%= @app['database']['password'] %>

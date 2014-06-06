@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-# NodeJS is required because of the asset pipeline needs a valud JS runtime
+# NodeJS is required because of the asset pipeline needs a valid JS runtime
 
 include_recipe 'supermarket::_apt'
 
