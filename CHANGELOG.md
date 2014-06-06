@@ -1,6 +1,14 @@
 Supermarket
 ===========
 
+v1.3.4 (2014-06-06)
+-------------------
+
+- Move postgres dev header package install to ruby recipe (required to build `pg` gem)
+- Ensure build-essential is installed so bundle can build gems' C extensions
+- Add port option to database.yml
+
+
 v1.3.2 (2014-06-06)
 -------------------
 
