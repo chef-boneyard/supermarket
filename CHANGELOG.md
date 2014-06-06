@@ -1,6 +1,14 @@
 Supermarket
 ===========
 
+v1.3.2 (2014-06-06)
+-------------------
+
+- Test on Ubuntu 14.04
+- Create postgresql config directory
+- Use link resources for ruby instead of update-alternatives
+
+
 v1.3.0 (2014-06-02)
 -------------------
 
