@@ -69,7 +69,13 @@ deploy_revision node['supermarket']['home'] do
       environment 'RAILS_ENV' => 'production'
       cwd release_path
       command 'bundle exec rake sitemap:refresh:no_ping'
-      not_if 'test -f public/sitemap.xml.gz'
+      not_if { ::File.exists?('public/sitemap.xml.gz') }
+    end
+
+    execute 'db:seed' do
+      environment 'RAILS_ENV' => 'production'
+      cwd release_path
+      command 'bundle exec rake db:seed'
     end
   end
 
