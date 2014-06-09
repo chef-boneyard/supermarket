@@ -64,6 +64,14 @@ deploy_revision node['supermarket']['home'] do
     end
   end
 
+  after_restart do
+    execute 'db:seed' do
+      environment 'RAILS_ENV' => 'production'
+      cwd release_path
+      command 'bundle exec rake db:seed'
+    end
+  end
+
   notifies :restart, 'service[unicorn]'
   notifies :restart, 'service[sidekiq]'
 end

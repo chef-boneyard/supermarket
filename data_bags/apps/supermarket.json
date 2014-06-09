@@ -6,6 +6,9 @@
   "sentry_url": "someSentryUrl",
   "redis_url": "redis://127.0.0.1:6379",
   "database": {
+    "host": "localhost",
+    "username": "supermarket",
+    "password": "ExampleOnlyDontUseInProd"
   },
   "smtp": {
     "address": "someaddress.com",
