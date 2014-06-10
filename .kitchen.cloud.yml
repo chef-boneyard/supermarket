@@ -17,8 +17,22 @@ platforms:
     ssh_key_ids: <%= ENV['DIGITAL_OCEAN_SSH_KEY_IDS'] %>
     ssh_key: <%= ENV['DIGITAL_OCEAN_SSH_KEY_PATH'] %>
 
+- name: ubuntu-14.04
+  driver_plugin: digitalocean
+  driver_config:
+    image_id: 3240036
+    flavor_id: 63
+    region_id: 4
+    ssh_key_ids: <%= ENV['DIGITAL_OCEAN_SSH_KEY_IDS'] %>
+    ssh_key: <%= ENV['DIGITAL_OCEAN_SSH_KEY_PATH'] %>
+    attributes:
+      postgres:
+        version: "9.3"
 suites:
   - name: default
     data_bags_path: data_bags
     run_list:
       - recipe[supermarket::default]
+    attributes:
+      postgres:
+        auth_method: trust
