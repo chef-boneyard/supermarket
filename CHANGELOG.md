@@ -1,6 +1,18 @@
 Supermarket
 ===========
 
+v2.0.0 (2014-06-10)
+-------------------
+
+This release may not work properly if you currently define an empty database key in your apps data bag. Please remove it, if it is uneeded.
+
+* Adds support for serving sitemaps via nginx
+* Adds support for generating sitemaps after a deploy
+* Refines the way database.yml is handled
+* Allows COMMUNITY_SITE_DATABASE_URL to be set via the databag for imports from the old community site to be run.
+* Updates .kitchen.cloud.yml to test 14.04
+
+
 v1.3.4 (2014-06-06)
 -------------------
 
