@@ -66,6 +66,8 @@ deploy_revision node['supermarket']['home'] do
 
   after_restart do
     execute 'sitemap:refresh:no_ping' do
+      user 'supermarket'
+      group 'supermarket'
       environment 'RAILS_ENV' => 'production'
       cwd release_path
       command 'bundle exec rake sitemap:refresh:no_ping'
@@ -73,6 +75,8 @@ deploy_revision node['supermarket']['home'] do
     end
 
     execute 'db:seed' do
+      user 'supermarket'
+      group 'supermarket'
       environment 'RAILS_ENV' => 'production'
       cwd release_path
       command 'bundle exec rake db:seed'
