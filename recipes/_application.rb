@@ -64,6 +64,15 @@ deploy_revision node['supermarket']['home'] do
     end
   end
 
+  after_restart do
+    execute 'sitemap:refresh:no_ping' do
+      environment 'RAILS_ENV' => 'production'
+      cwd release_path
+      command 'bundle exec rake sitemap:refresh:no_ping'
+      not_if 'test -f public/sitemap.xml.gz'
+    end
+  end
+
   notifies :restart, 'service[unicorn]'
   notifies :restart, 'service[sidekiq]'
 end

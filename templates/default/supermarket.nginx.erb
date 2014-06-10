@@ -5,6 +5,12 @@ upstream unicorn {
 server {
   listen 80;
 
+  location ~ /sitemap\d*.xml.gz {
+    root <%= node['supermarket']['home'] %>/current/public;
+
+    break;
+  }
+
   location ~ ^/(assets|system)/ {
     root <%= node['supermarket']['home'] %>/current/public;
 
