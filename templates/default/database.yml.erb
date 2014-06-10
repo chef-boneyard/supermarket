@@ -1,14 +1,14 @@
 production:
-  adapter: postgresql
-  <% if @app['database'] %>
-  host: <%= @app['database']['host'] %>
-  port: <%= @app['database']['port'] %>
-  username: <%= @app['database']['username'] %>
-  password: <%= @app['database']['password'] %>
-  database: <%= @app['database']['name'] %>
-  pool: <%= @app['database']['pool'] %>
-  <% else %>
-  username: <%= node['postgres']['user'] %>
-  database: <%= node['postgres']['database'] %>
-  pool: <%= node['supermarket']['database']['pool'] %>
+  <% if @app['database']['host'] || node['supermarket']['database']['host'] %>
+  host: <%= @app['database']['host'] || node['supermarket']['database']['host'] %>
   <% end %>
+  <% if @app['database']['port'] || node['supermarket']['database']['port'] %>
+  port: <%= @app['database']['port'] || node['supermarket']['database']['port'] %>
+  <% end %>
+  username: <%= @app['database']['user'] || node['supermarket']['database']['user'] %>
+  <% if @app['database']['password'] || node['supermarket']['database']['password'] %>
+  password: <%= @app['database']['password'] || node['supermarket']['database']['password'] %>
+  <% end %>
+  adapter: postgresql
+  database: <%= @app['database']['name'] || node['supermarket']['database']['name'] %>
+  pool: <%= @app['database']['pool'] || node['supermarket']['database']['pool'] %>

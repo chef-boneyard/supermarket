@@ -17,9 +17,8 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_apt'
-include_recipe 'supermarket::_ruby'
-include_recipe 'supermarket::_mysql'
+include_recipe 'postgresql::client'
+include_recipe 'mysql::client'
 
 app = data_bag_item(:apps, node['supermarket']['data_bag'])
 
@@ -49,6 +48,12 @@ deploy_revision node['supermarket']['home'] do
 
     template "#{node['supermarket']['home']}/shared/.env" do
       variables(app: app)
+    end
+
+    execute 'bundle config' do
+      cwd release_path
+      command "bundle config build.pg --with-pg-config=/usr/pgsql-#{node['postgresql']['version']}/bin/pg_config"
+      only_if { File.exists?("/usr/pgsql-#{node['postgresql']['version']}/bin/pg_config") }
     end
 
     execute 'bundle install' do
@@ -83,7 +88,12 @@ deploy_revision node['supermarket']['home'] do
       command 'bundle exec rake db:seed'
     end
   end
+end
 
-  notifies :restart, 'service[unicorn]'
-  notifies :restart, 'service[sidekiq]'
+runit_service 'unicorn' do
+  default_logger true
+end
+
+runit_service 'sidekiq' do
+  default_logger true
 end

@@ -17,17 +17,43 @@
 # limitations under the License.
 #
 
-default['postgres']['user'] = 'supermarket'
-default['postgres']['database'] = 'supermarket_production'
-default['postgres']['auth_method'] = 'peer'
-default['postgres']['version'] = '9.1'
-
-default['redis']['maxmemory'] = '64mb'
+default['supermarket']['data_bag']     = 'supermarket'
+default['supermarket']['ruby_version'] = '2.0.0-p481'
 
 default['supermarket']['cla_signature_notification_email'] = 'notifications@example.com'
-default['supermarket']['from_email'] = 'donotreply@example.com'
-default['supermarket']['home'] = '/srv/supermarket'
-default['supermarket']['host'] = 'supermarket.getchef.com'
-default['supermarket']['sidekiq']['concurrency'] = '25'
-default['supermarket']['database']['pool'] = 25
-default['supermarket']['data_bag'] = 'supermarket'
+default['supermarket']['from_email']                       = 'donotreply@example.com'
+default['supermarket']['home']                             = '/srv/supermarket'
+default['supermarket']['host']                             = 'supermarket.getchef.com'
+default['supermarket']['port']                             = 80
+default['supermarket']['sidekiq']['concurrency']           = 25
+
+default['supermarket']['database']['user']        = 'supermarket'
+default['supermarket']['database']['name']        = 'supermarket_production'
+default['supermarket']['database']['auth_method'] = 'peer'
+default['supermarket']['database']['pool']        = 25
+
+# Override attributes of cookbooks we rely on
+# nginx
+default['nginx']['install_method']       = 'source'
+default['nginx']['default_site_enabled'] = false
+
+# postgresql
+#
+# The needed version (9.3) needs to go in a Chef role or environment:
+# "postgresql": {
+#   "version": "9.3"
+# }
+#
+default['postgresql']['enable_pgdg_apt']       = platform_family?('debian')
+default['postgresql']['enable_pgdg_yum']       = platform_family?('rhel')
+default['postgresql']['contrib']['extensions'] = ['plpgsql', 'pg_trgm']
+
+# redisio
+default['redisio']['default_settings']['maxmemory'] = '64mb'
+
+# runit
+if platform_family?('rhel')
+  default['runit']['start']  = 'start runsvdir'
+  default['runit']['stop']   = 'stop runsvdir'
+  default['runit']['reload'] = 'restart runsvdir'
+end

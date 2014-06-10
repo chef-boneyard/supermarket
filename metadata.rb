@@ -6,7 +6,17 @@ license 'Apache v2.0'
 description 'Stands up the Supermarket application stack'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 
-supports 'ubuntu'
+%w(redhat centos ubuntu).each do |os|
+  supports os
+end
+
+depends 'nginx'
+depends 'nodejs'
+depends 'mysql'
+depends 'postgresql'
+depends 'redisio'
+depends 'ruby_install'
+depends 'runit'
 
 recipe 'supermarket::default',
        'Installs Supermarket and all dependencies for production'
@@ -14,10 +24,8 @@ recipe 'supermarket::default',
 recipe 'supermarket::vagrant',
        'Installs Supermarket and all dependencies for development'
 
-provides 'service[nginx]'
-provides 'service[postgres]'
-provides 'service[redis-server]'
-provides 'service[unicorn]'
+provides 'runit_service[unicorn]'
+provides 'runit_service[sidekiq]'
 
 grouping 'postgres', :title => 'PostgreSQL options'
 
