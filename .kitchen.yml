@@ -10,9 +10,15 @@ provisioner:
 platforms:
   - name: ubuntu-12.04
   - name: ubuntu-14.04
+    attributes:
+      postgres:
+        version: "9.3"
 
 suites:
   - name: default
     data_bags_path: data_bags
     run_list:
       - recipe[supermarket::default]
+    attributes:
+      postgres:
+        auth_method: trust
