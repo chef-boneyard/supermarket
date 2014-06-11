@@ -1,6 +1,12 @@
 Supermarket
 ===========
 
+v2.0.2 (2014-06-11)
+-------------------
+
+* Adds libmysql to make it so bundler completes
+
+
 v2.0.0 (2014-06-10)
 -------------------
 
