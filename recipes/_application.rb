@@ -19,6 +19,7 @@
 
 include_recipe 'supermarket::_apt'
 include_recipe 'supermarket::_ruby'
+include_recipe 'supermarket::_mysql'
 
 app = data_bag_item(:apps, node['supermarket']['data_bag'])
 
