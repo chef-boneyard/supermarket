@@ -17,42 +17,18 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_apt'
+include_recipe 'ruby_install'
 
-execute 'apt-get-update-ruby-only' do
-  command "apt-get update -o Dir::Etc::sourcelist='sources.list.d/brightbox-ruby-ng-experimental-precise.list' -o Dir::Etc::sourceparts='-' -o APT::Get::List-Cleanup='0'"
-  notifies :run, 'execute[apt-cache gencaches]'
-  action :nothing
-  ignore_failure true
-end
-
-execute 'add-apt-repository[ppa:brightbox]' do
-  command 'add-apt-repository ppa:brightbox/ruby-ng-experimental'
-  notifies :run, 'execute[apt-get-update-ruby-only]', :immediately
-  not_if 'test -f /etc/apt/sources.list.d/brightbox-ruby-ng-experimental-precise.list'
-end
-
-package 'ruby2.0'
-package 'ruby2.0-dev'
+ruby_install_ruby "ruby #{node['supermarket']['ruby_version']}"
 
 %w{erb gem irb rake rdoc ri ruby testrb}.each do |rb|
   link "/usr/bin/#{rb}" do
-    to "/usr/bin/#{rb}2.0"
+    to "#{node['ruby_install']['default_ruby_base_path']}/ruby-#{node['supermarket']['ruby_version']}/bin/#{rb}"
   end
 end
 
-# the bundle contains gems that need to compile C extensions
-package 'build-essential'
-
-# Nokogiri requires XML
-package 'libxslt-dev'
-package 'libxml2-dev'
-
-# SQLite3 requires development headers
-package 'libsqlite3-dev'
-
-# `pg` requires development headers; this allows the application to deploy (bundle)
-# when postgresql isn't running on the same node.
-package 'libpq-dev'
-
 gem_package 'bundler'
+
+link "/usr/bin/bundle" do
+  to "#{node['ruby_install']['default_ruby_base_path']}/ruby-#{node['supermarket']['ruby_version']}/bin/bundle"
+end

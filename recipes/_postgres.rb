@@ -17,46 +17,27 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_apt'
+include_recipe 'postgresql::contrib'
 
-package 'postgresql'
-package 'postgresql-contrib'
+app = data_bag_item(:apps, node['supermarket']['data_bag'])
 
 execute 'postgres[user]' do
   user 'postgres'
-  command "echo 'CREATE ROLE #{node['postgres']['user']} WITH LOGIN;' | psql"
-  not_if  "echo 'SELECT 1 FROM pg_roles WHERE rolname = \'#{node['postgres']['user']}\';' | psql | grep -q 1"
+  command "echo 'CREATE ROLE #{app['database']['user'] || node['supermarket']['database']['user']} WITH LOGIN;' | psql"
+  not_if %Q[echo "SELECT 1 FROM pg_roles WHERE rolname = '#{app['database']['user'] || node['supermarket']['database']['user']}';" | psql | grep -q 1], :user => 'postgres'
 end
 
 execute 'postgres[database]' do
   user 'postgres'
-  command "echo 'CREATE DATABASE #{node['postgres']['database']};' | psql"
-  not_if  "echo 'SELECT 1 FROM pg_database WHERE datname = \'#{node['postgres']['database']}\';' | psql | grep -q 1"
+  command "echo 'CREATE DATABASE #{app['database']['name'] || node['supermarket']['database']['name']};' | psql"
+  not_if %Q[echo "SELECT 1 FROM pg_database WHERE datname = '#{app['database']['name'] || node['supermarket']['database']['name']}';" | psql | grep -q 1], :user => 'postgres'
+  notifies :run, 'execute[postgres[privileges]]', :immediately
 end
 
 execute 'postgres[privileges]' do
   user 'postgres'
-  command "echo 'GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA #{node['postgres']['database']} TO #{node['postgres']['user']};' | psql"
-end
-
-execute 'postgres[extensions][plpgsql]' do
-  user 'postgres'
-  command "echo 'CREATE EXTENSION IF NOT EXISTS plpgsql' | psql"
-  not_if "echo '\dx' | psql #{node['postgres']['database']} | grep plpgsql"
-end
-
-execute 'postgres[extensions][pg_trgm]' do
-  user 'postgres'
-  command "echo 'CREATE EXTENSION IF NOT EXISTS pg_trgm' | psql"
-  not_if "echo '\dx' | psql #{node['postgres']['database']} | grep pg_trgm"
-end
-
-directory "/etc/postgresql/#{node['postgres']['version']}/main" do
-  recursive true
-end
-
-template "/etc/postgresql/#{node['postgres']['version']}/main/pg_hba.conf" do
-  notifies :restart, 'service[postgresql]', :immediately
+  command "echo 'GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA #{app['database']['name'] || node['supermarket']['database']['name']} TO #{app['database']['user'] || node['supermarket']['database']['user']};' | psql"
+  action :nothing
 end
 
 service 'postgresql' do

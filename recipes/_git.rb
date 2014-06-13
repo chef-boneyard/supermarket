@@ -17,6 +17,4 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_apt'
-
 package 'git'

@@ -17,16 +17,13 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_apt'
+include_recipe 'nginx'
 
-package 'nginx'
-
-template '/etc/nginx/sites-available/default' do
+template "#{node[:nginx][:dir]}/sites-available/supermarket" do
   source 'supermarket.nginx.erb'
   notifies :reload, 'service[nginx]'
 end
 
-service 'nginx' do
-  supports reload: true
-  action [:enable, :start]
+nginx_site 'supermarket' do
+  enable true
 end
