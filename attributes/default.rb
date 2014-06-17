@@ -31,3 +31,14 @@ default['supermarket']['host'] = 'supermarket.getchef.com'
 default['supermarket']['sidekiq']['concurrency'] = '25'
 default['supermarket']['database']['pool'] = 25
 default['supermarket']['data_bag'] = 'supermarket'
+
+# To use AWS ELB in front of Supermarket, set force_ssl to true, but
+# don't set the ssl_crt_path or ssl_key_path. To use SSL directly on
+# the nginx proxy in front of the app, set force_ssl to true and set
+# the path attributes below.
+default['supermarket']['force_ssl']  = false
+# To use custom SSL certificate/key, name the files, and in a separate
+# cookbook, manage them with your favorite method (chef-vault items,
+# regular data bags, etc).
+default['supermarket']['ssl_crt_path'] = nil
+default['supermarket']['ssl_key_path'] = nil
