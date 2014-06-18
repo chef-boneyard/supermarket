@@ -1,6 +1,13 @@
 Supermarket
 ===========
 
+v2.1.2 (2014-06-18)
+-------------------
+
+* In 2.1.0, the force_ssl attribute was added. During development it
+  was previously enforce_ssl, but the template wasn't updated.
+
+
 v2.1.0 (2014-06-18)
 -------------------
 
