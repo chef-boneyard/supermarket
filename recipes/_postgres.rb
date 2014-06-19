@@ -25,13 +25,13 @@ package 'postgresql-contrib'
 execute 'postgres[user]' do
   user 'postgres'
   command "echo 'CREATE ROLE #{node['postgres']['user']} WITH LOGIN;' | psql"
-  not_if  "echo 'SELECT 1 FROM pg_roles WHERE rolname = \'#{node['postgres']['user']}\';' | psql | grep -q 1"
+  not_if "echo 'SELECT 1 FROM pg_roles WHERE rolname = \'#{node['postgres']['user']}\';' | psql | grep -q 1"
 end
 
 execute 'postgres[database]' do
   user 'postgres'
   command "echo 'CREATE DATABASE #{node['postgres']['database']};' | psql"
-  not_if  "echo 'SELECT 1 FROM pg_database WHERE datname = \'#{node['postgres']['database']}\';' | psql | grep -q 1"
+  not_if "echo 'SELECT 1 FROM pg_database WHERE datname = \'#{node['postgres']['database']}\';' | psql | grep -q 1"
 end
 
 execute 'postgres[privileges]' do
