@@ -35,7 +35,7 @@ end
 package 'ruby2.0'
 package 'ruby2.0-dev'
 
-%w{erb gem irb rake rdoc ri ruby testrb}.each do |rb|
+%w(erb gem irb rake rdoc ri ruby testrb).each do |rb|
   link "/usr/bin/#{rb}" do
     to "/usr/bin/#{rb}2.0"
   end

@@ -6,7 +6,7 @@ gem 'berkshelf', '~> 3.0.0.beta'
 group :development do
   gem 'foodcritic', '~> 3.0'
   gem 'license_finder', '~> 0.9.5.1'
-  gem 'rubocop', '~> 0.18.0'
+  gem 'rubocop', '~> 0.23.0'
 end
 
 group :test do

@@ -46,9 +46,9 @@ end
 
 template '/etc/redis/redis.conf' do
   source 'redis.conf.erb'
-  owner  'root'
-  group  'root'
-  mode   '0644'
+  owner 'root'
+  group 'root'
+  mode '0644'
   notifies :restart, 'service[redis-server]'
 end
 
