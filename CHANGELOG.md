@@ -1,6 +1,14 @@
 Supermarket
 ===========
 
+v2.2.0 (2014-06-23)
+-------------------
+
+* Allow protocol to be configured for things like email, etc. (#21)
+* Install libarchive-dev (#20)
+* Fix the order of mysql recipe (#17)
+
+
 v2.1.2 (2014-06-18)
 -------------------
 
