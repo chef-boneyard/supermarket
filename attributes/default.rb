@@ -28,6 +28,7 @@ default['supermarket']['cla_signature_notification_email'] = 'notifications@exam
 default['supermarket']['from_email'] = 'donotreply@example.com'
 default['supermarket']['home'] = '/srv/supermarket'
 default['supermarket']['host'] = 'supermarket.getchef.com'
+default['supermarket']['protocol'] = 'https'
 default['supermarket']['sidekiq']['concurrency'] = '25'
 default['supermarket']['database']['pool'] = 25
 default['supermarket']['data_bag'] = 'supermarket'
