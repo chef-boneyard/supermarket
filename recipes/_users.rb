@@ -29,6 +29,13 @@ user 'supermarket' do
   shell '/bin/false'
 end
 
+directory node['supermarket']['home'] do
+  owner "supermarket"
+  group "supermarket"
+  mode 0755
+  recursive true
+end
+
 file ::File.join(node['supermarket']['home'], '.gemrc') do
   content 'gem: --no-ri --no-rdoc'
 end
