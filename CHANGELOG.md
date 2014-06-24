@@ -1,6 +1,13 @@
 Supermarket
 ===========
 
+v2.2.2 (2014-06-24)
+-------------------
+
+- Add a .gemrc for the supermarket user (#23)
+- Add Segment.IO key to .env.production template
+
+
 v2.2.0 (2014-06-23)
 -------------------
 
