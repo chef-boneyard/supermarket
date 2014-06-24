@@ -57,6 +57,18 @@ describe 'supermarket::default' do
       expect(resource).to notify('service[sidekiq]').to(:restart)
     end
 
+    it 'contains SEGMENT_IO_WRITE_KEY when such an entry is in the data bag' do
+      ChefSpec::Server.create_data_bag('apps', {
+        'supermarket' => {
+          'segment_io_write_key' => 'hello'
+        }
+      })
+
+      expect(chef_run)
+        .to render_file('/srv/supermarket/shared/.env.production')
+        .with_content('SEGMENT_IO_WRITE_KEY=hello')
+    end
+
   end
 
 end
