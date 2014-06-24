@@ -28,3 +28,7 @@ user 'supermarket' do
   comment 'Supermarket'
   shell '/bin/false'
 end
+
+file ::File.join(node['supermarket']['home'], '.gemrc') do
+  content 'gem: --no-ri --no-rdoc'
+end
