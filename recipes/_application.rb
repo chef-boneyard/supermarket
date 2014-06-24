@@ -21,7 +21,24 @@ include_recipe 'supermarket::_apt'
 include_recipe 'supermarket::_ruby'
 include_recipe 'supermarket::_mysql'
 
+directory "#{node['supermarket']['home']}/shared" do
+  user 'supermarket'
+  group 'supermarket'
+  mode 0755
+  recursive true
+end
+
 app = data_bag_item(:apps, node['supermarket']['data_bag'])
+
+template "#{node['supermarket']['home']}/shared/.env.production" do
+  variables(app: app)
+
+  user 'supermarket'
+  group 'supermarket'
+
+  notifies :restart, 'service[unicorn]'
+  notifies :restart, 'service[sidekiq]'
+end
 
 deploy_revision node['supermarket']['home'] do
   repo 'https://github.com/opscode/supermarket.git'
@@ -44,10 +61,6 @@ deploy_revision node['supermarket']['home'] do
     end
 
     template "#{release_path}/config/database.yml" do
-      variables(app: app)
-    end
-
-    template "#{node['supermarket']['home']}/shared/.env.production" do
       variables(app: app)
     end
 
