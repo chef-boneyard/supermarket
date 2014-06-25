@@ -21,7 +21,7 @@ include_recipe 'supermarket::_apt'
 include_recipe 'supermarket::_mysql'
 include_recipe 'supermarket::_ruby'
 
-directory "#{node['supermarket']['home']}/shared" do
+directory "#{node['supermarket']['home']}/shared/bundle" do
   user 'supermarket'
   group 'supermarket'
   mode 0755
@@ -66,7 +66,7 @@ deploy_revision node['supermarket']['home'] do
 
     execute 'bundle install' do
       cwd release_path
-      command 'bundle install --without test development --path=vendor/bundle'
+      command "bundle install --without test development --path=#{node['supermarket']['home']}/shared/bundle"
     end
   end
 
