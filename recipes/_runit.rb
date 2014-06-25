@@ -30,8 +30,23 @@ end
     recursive true
   end
 
+  directory "/etc/sv/#{service}/log" do
+    mode '0755'
+    recursive true
+  end
+
+  directory "/var/log/#{service}" do
+    mode '0755'
+    recursive true
+  end
+
   template "/etc/sv/#{service}/run" do
     source "#{service}.sv.erb"
+    mode '0755'
+  end
+
+  file "/etc/sv/#{service}/log/run" do
+    content "#!/bin/sh\nexec svlogd -tt /var/log/#{service}\n"
     mode '0755'
   end
 
