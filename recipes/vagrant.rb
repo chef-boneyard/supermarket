@@ -22,6 +22,7 @@ include_recipe 'supermarket::_postgres'
 include_recipe 'supermarket::_redis'
 include_recipe 'supermarket::_git'
 include_recipe 'supermarket::_ruby'
+include_recipe 'supermarket::_mysql'
 
 execute 'dotenv[setup]' do
   user 'vagrant'
