@@ -1,6 +1,12 @@
 Supermarket
 ===========
 
+v2.3.1 (2014-06-30)
+-------------------
+
+- Corrects supermarket::vagrant recipe missing _mysql
+
+
 v2.3.0 (2014-06-25)
 -------------------
 
