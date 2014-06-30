@@ -1,6 +1,13 @@
 Supermarket
 ===========
 
+v2.3.0 (2014-06-25)
+-------------------
+
+- Moves bundler vendored gems to a shared directory that does not get recreated during each deploy (#25)
+- Adds sv log to runit service (#26)
+
+
 v2.2.2 (2014-06-24)
 -------------------
 
