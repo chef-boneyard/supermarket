@@ -55,6 +55,4 @@ package 'libsqlite3-dev'
 # when postgresql isn't running on the same node.
 package 'libpq-dev'
 
-package 'libarchive-dev'
-
 gem_package 'bundler'
