@@ -50,7 +50,7 @@ deploy_revision node['supermarket']['home'] do
   environment 'RAILS_ENV' => 'production'
   action app['deploy_action'] || 'deploy'
 
-  symlink_before_migrate '.env.production' => '.env.production'
+  symlink_before_migrate '.env.production' => '.env'
 
   before_migrate do
     %w(pids log system public).each do |dir|
