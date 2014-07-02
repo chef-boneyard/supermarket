@@ -1,6 +1,12 @@
 Supermarket
 ===========
 
+v2.3.5 (2014-07-02)
+-------------------
+
+- Add Curry Success label to .env.production template
+
+
 v2.3.3 (2014-07-02)
 -------------------
 
