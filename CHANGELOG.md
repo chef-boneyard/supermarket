@@ -1,6 +1,13 @@
 Supermarket
 ===========
 
+v2.3.3 (2014-07-02)
+-------------------
+
+- Allow Google Analytics ID to be configured (#27)
+- Add CCLA and ICLA versions to the .env.production template (#30)
+
+
 v2.3.1 (2014-06-30)
 -------------------
 
