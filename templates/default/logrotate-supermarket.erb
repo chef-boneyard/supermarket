@@ -1,7 +1,7 @@
 <%= node['supermarket']['home'] %>/shared/log/*.log {
         daily
         missingok
-        rotate 7
+        rotate 14
         compress
         notifempty
         copytruncate
