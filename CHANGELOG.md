@@ -1,6 +1,12 @@
 Supermarket
 ===========
 
+v2.4.1 (2014-07-03)
+-------------------
+
+- Add log rotation to avoid filling disk with rails and nginx logs
+
+
 v2.3.6 (2014-07-02)
 -------------------
 
