@@ -24,7 +24,7 @@ describe 'supermarket' do
     expect(res).to be > 0
   end
 
-  describe file('/srv/supermarket/current/.env.production') do
+  describe file('/srv/supermarket/current/.env') do
     it { should be_linked_to '/srv/supermarket/shared/.env.production' }
   end
 end
