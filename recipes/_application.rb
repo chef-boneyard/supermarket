@@ -106,3 +106,10 @@ deploy_revision node['supermarket']['home'] do
   notifies :restart, 'service[unicorn]'
   notifies :restart, 'service[sidekiq]'
 end
+
+template "/etc/logrotate.d/supermarket-logs" do
+  source "logrotate-supermarket-logs.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+end
