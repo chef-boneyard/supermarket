@@ -36,3 +36,12 @@ suites:
     attributes:
       postgres:
         auth_method: trust
+  - name: force_ssl
+    data_bags_path: data_bags
+    run_list:
+      - recipe[supermarket::default]
+    attributes:
+      postgres:
+        auth_method: trust
+      supermarket:
+        force_ssl: true
