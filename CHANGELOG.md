@@ -1,6 +1,13 @@
 Supermarket
 ===========
 
+v2.4.0 (2014-07-03)
+-------------------
+
+- Adds the ability to set node['supermarket']['allow_http_domain'] to allow a given domain to bypass https requirement when setting force_ssl
+- Fixes a few broken tests
+
+
 v2.3.6 (2014-07-02)
 -------------------
 
