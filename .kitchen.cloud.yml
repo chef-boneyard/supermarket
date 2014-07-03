@@ -45,3 +45,4 @@ suites:
         auth_method: trust
       supermarket:
         force_ssl: true
+        allow_http_domain: 'http-only.example.com'
