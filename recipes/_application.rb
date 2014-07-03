@@ -21,6 +21,12 @@ include_recipe 'supermarket::_apt'
 include_recipe 'supermarket::_mysql'
 include_recipe 'supermarket::_ruby'
 
+directory "#{node['supermarket']['home']}/shared" do
+  user 'supermarket'
+  group 'supermarket'
+  mode 0755
+end
+
 directory "#{node['supermarket']['home']}/shared/bundle" do
   user 'supermarket'
   group 'supermarket'
