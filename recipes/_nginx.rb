@@ -30,3 +30,10 @@ service 'nginx' do
   supports reload: true
   action [:enable, :start]
 end
+
+cookbook_file "/etc/logrotate.d/nginx" do
+  source "logrotate-nginx"
+  owner "root"
+  group "root"
+  mode "0644"
+end
