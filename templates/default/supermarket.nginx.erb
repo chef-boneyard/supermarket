@@ -24,9 +24,10 @@ server {
 }
 
 <%   if node['supermarket']['allow_http_domain'] -%>
+<%     node['supermarket']['allow_http_domain'].each do |domain| -%>
 server {
   listen 80;
-  server_name <%= node['supermarket']['allow_http_domain'] %>;
+  server_name <%= domain %>;
 
   location ~ /sitemap\d*.xml.gz {
     root <%= node['supermarket']['home'] %>/current/public;
@@ -60,6 +61,7 @@ server {
     gzip_types text/plain application/json;
   }
 }
+<%     end -%>
 <%   end -%>
 
 server {
