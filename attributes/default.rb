@@ -32,6 +32,7 @@ default['supermarket']['protocol'] = 'https'
 default['supermarket']['sidekiq']['concurrency'] = '25'
 default['supermarket']['database']['pool'] = 25
 default['supermarket']['data_bag'] = 'supermarket'
+default['supermarket']['web_concurrency'] = node['cpu']['total']
 
 # To use AWS ELB in front of Supermarket, set force_ssl to true, but
 # don't set the ssl_crt_path or ssl_key_path. To use SSL directly on

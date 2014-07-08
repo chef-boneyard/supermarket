@@ -1,5 +1,5 @@
 #!/bin/sh
 exec 2>&1
-
+export WEB_CONCURRENCY=<%= node['supermarket']['web_concurrency'] %>
 cd <%= node['supermarket']['home'] %>/current
 exec chpst -usupermarket -P bundle exec unicorn -E production -c config/unicorn/production.rb
