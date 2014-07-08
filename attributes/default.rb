@@ -32,6 +32,12 @@ default['supermarket']['protocol'] = 'https'
 default['supermarket']['sidekiq']['concurrency'] = '25'
 default['supermarket']['database']['pool'] = 25
 default['supermarket']['data_bag'] = 'supermarket'
+# used primarily by CHEF operations to handle legacy tools and
+# configuration pointing at the HTTP (non-SSL) only
+# `cookbooks.opscode.com` and `api.berkshelf.com`, this must be set as
+# an Array of domains that shouldn't be redirected to HTTPS by nginx.
+default['supermarket']['allow_http_domains'] = nil
+# make a knob for the number of workers for unicorn.
 default['supermarket']['web_concurrency'] = node['cpu']['total']
 
 # To use AWS ELB in front of Supermarket, set force_ssl to true, but

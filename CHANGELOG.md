@@ -1,6 +1,22 @@
 Supermarket
 ===========
 
+v2.4.3 (2014-07-07)
+-------------------
+
+The "supermarket is live" release!
+
+- Remove `COMMUNITY_SITE_DATABASE_URL` from .env
+- Make use of `WEB_CONCURRENCY` for unicorn config to allow adjusting
+  the number of workers based on the number of CPUs.
+- Add an attribute to allow certain domains to not be redirected from
+  http -> https.
+
+v2.4.2 (2014-07-07)
+-------------------
+
+- **IMPORTANT** Version 2.4.2 was tagged incorrectly.
+
 v2.4.1 (2014-07-03)
 -------------------
 
