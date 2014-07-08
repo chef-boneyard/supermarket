@@ -2,7 +2,9 @@ require_relative 'spec_helper'
 
 describe 'supermarket::_nginx' do
   let(:chef_run) do
-    ChefSpec::Runner.new.converge(described_recipe)
+    ChefSpec::Runner.new do |node|
+      node.automatic['cpu']['total'] = 1
+    end.converge(described_recipe)
   end
 
   it 'reloads the service when the default sites-available conf changes' do
