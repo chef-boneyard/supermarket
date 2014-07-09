@@ -6,7 +6,7 @@ describe 'supermarket' do
   end
 
   it 'serve Chef Supermarket index web page' do
-    cmd = command 'curl http://localhost 2> /dev/null'
+    cmd = command 'wget -O - http://localhost 2> /dev/null'
     expect(cmd.stdout).to match '<!DOCTYPE html>'
   end
 

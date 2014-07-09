@@ -18,7 +18,9 @@ describe 'supermarket::default' do
   end
 
   let(:chef_run) do
-    ChefSpec::Runner.new.converge(described_recipe)
+    ChefSpec::Runner.new do |node|
+      node.automatic['cpu']['total'] = 1
+    end.converge(described_recipe)
   end
 
   it 'compiles' do
@@ -30,6 +32,7 @@ describe 'supermarket::default' do
     let(:chef_run) do
       ChefSpec::Runner.new do |node|
         node.set['supermarket']['data_bag'] = 'supermarket_prod'
+        node.automatic['cpu']['total'] = 1
       end.converge(described_recipe)
     end
 
