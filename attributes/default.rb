@@ -37,6 +37,9 @@ default['supermarket']['data_bag'] = 'supermarket'
 # `cookbooks.opscode.com` and `api.berkshelf.com`, this must be set as
 # an Array of domains that shouldn't be redirected to HTTPS by nginx.
 default['supermarket']['allow_http_domains'] = nil
+# Used to enable caching for berkshelf traffic via nginx. THIS WILL
+# BREAK COOKBOOK DOWNLOAD COUNTERS
+default['supermarket']['nginx']['cache'] = false
 # make a knob for the number of workers for unicorn.
 default['supermarket']['web_concurrency'] = node['cpu']['total']
 
