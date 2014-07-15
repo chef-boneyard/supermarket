@@ -23,5 +23,8 @@
     "github_access_token": "someAccessToken",
     "cla_location": "claUrl",
     "pubsubhubbub_secret": "someSecret"
-  }
+  },
+  "feature_flags": [
+    "tools_enabled"
+  ]
 }
