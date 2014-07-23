@@ -1,6 +1,12 @@
 Supermarket
 ===========
 
+v2.5.0 (2014-07-23)
+-------------------
+
+- Support ENV based app feature flags
+- As a default, calculate the number of unicorn workers by # of CPUs
+
 v2.4.3 (2014-07-07)
 -------------------
 
