@@ -27,4 +27,9 @@ describe 'supermarket' do
   describe file('/srv/supermarket/current/.env') do
     it { should be_linked_to '/srv/supermarket/shared/.env.production' }
   end
+
+  it 'writes feature flags to .env.production from the apps databag' do
+    cmd = command 'cat /srv/supermarket/shared/.env.production'
+    expect(cmd.stdout).to match 'TOOLS_ENABLED=true'
+  end
 end
