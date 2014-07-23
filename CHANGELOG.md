@@ -1,6 +1,11 @@
 Supermarket
 ===========
 
+v2.5.1 (2014-07-23)
+-------------------
+
+- 2.5.0 release is missing files (like the env template).
+
 v2.5.0 (2014-07-23)
 -------------------
 
