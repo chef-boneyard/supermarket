@@ -37,8 +37,11 @@ default['supermarket']['data_bag'] = 'supermarket'
 # `cookbooks.opscode.com` and `api.berkshelf.com`, this must be set as
 # an Array of domains that shouldn't be redirected to HTTPS by nginx.
 default['supermarket']['allow_http_domains'] = nil
-# make a knob for the number of workers for unicorn.
-default['supermarket']['web_concurrency'] = node['cpu']['total']
+# make a knob for the number of workers for unicorn. This is named
+# web_concurrency for parity with the ENV variable in the app's
+# unicorn config:
+# https://github.com/opscode/supermarket/blob/master/config/unicorn/production.rb
+default['supermarket']['web_concurrency'] = node['cpu']['total'].to_i * 2
 
 # To use AWS ELB in front of Supermarket, set force_ssl to true, but
 # don't set the ssl_crt_path or ssl_key_path. To use SSL directly on
