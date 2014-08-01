@@ -17,7 +17,8 @@
   },
   "chef_oauth2": {
     "app_id": "someAppID",
-    "secret": "someSecret"
+    "secret": "someSecret",
+    "url": "https://id.opscode.com"
   },
   "curry": {
     "github_access_token": "someAccessToken",
