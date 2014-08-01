@@ -2,6 +2,7 @@
   "id": "supermarket_prod",
   "description": "This is an example data bag that is used to standup Supermarket if you use this please please please change the default values for security sake.",
   "secret_key_base": "someSecret",
+  "repository": "https://github.com/opscode/supermarket.git",
   "revision": "master",
   "sentry_url": "someSentryUrl",
   "redis_url": "redis://127.0.0.1:6379",

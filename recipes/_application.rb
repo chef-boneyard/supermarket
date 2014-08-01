@@ -46,7 +46,7 @@ template "#{node['supermarket']['home']}/shared/.env.production" do
 end
 
 deploy_revision node['supermarket']['home'] do
-  repo 'https://github.com/opscode/supermarket.git'
+  repo app['repository']
   revision app['revision']
   user 'supermarket'
   group 'supermarket'
