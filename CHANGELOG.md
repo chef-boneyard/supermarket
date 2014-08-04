@@ -1,5 +1,9 @@
 Supermarket
 ===========
+v2.6.0 (2014-08-06)
+-------------------
+- [#42] Make the application repository configurable through the data bag
+- [#43] Make the OAUTH2 URL configurable through the data bag
 
 v2.5.0 (2014-07-23)
 -------------------
