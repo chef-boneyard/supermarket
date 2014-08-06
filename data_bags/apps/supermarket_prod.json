@@ -27,7 +27,8 @@
     "cla_location": "claUrl",
     "pubsubhubbub_secret": "someSecret"
   },
-  "feature_flags": [
-    "tools_enabled"
+  "features": [
+    "tools",
+    "join_ccla"
   ]
 }
