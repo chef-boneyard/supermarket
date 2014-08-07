@@ -1,6 +1,10 @@
 Supermarket
 ===========
 
+v2.7.1 (2014-08-07)
+-------------------
+- [#48] Fix missing end statement
+
 v2.7.0 (2014-08-07)
 -------------------
 - [#44] Add unicorn configuration
