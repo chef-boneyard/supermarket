@@ -30,6 +30,6 @@ describe 'supermarket' do
 
   it 'writes feature flags to .env.production from the apps databag' do
     cmd = command 'cat /srv/supermarket/shared/.env.production'
-    expect(cmd.stdout).to match 'TOOLS_ENABLED=true'
+    expect(cmd.stdout).to match 'FEATURES=tools,join_ccla'
   end
 end
