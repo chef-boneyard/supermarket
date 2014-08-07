@@ -1,5 +1,13 @@
 Supermarket
 ===========
+
+v2.7.0 (2014-08-07)
+-------------------
+- [#44] Add unicorn configuration
+- [#45] Allow CDN URL to be configured in apps databag
+- [#47] Combine ENV feature flag variables into a single ENV variable
+- [#46] Template missing in v2.6.0 on community site download is fixed
+
 v2.6.0 (2014-08-06)
 -------------------
 - [#42] Make the application repository configurable through the data bag
