@@ -45,6 +45,11 @@ template "#{node['supermarket']['home']}/shared/.env.production" do
   notifies :restart, 'service[sidekiq]'
 end
 
+cookbook_file "#{node['supermarket']['home']}/shared/unicorn.rb" do
+  source 'unicorn.rb'
+  notifies :restart, 'service[unicorn]'
+end
+
 deploy_revision node['supermarket']['home'] do
   repo app['repository']
   revision app['revision']
@@ -56,6 +61,7 @@ deploy_revision node['supermarket']['home'] do
   action app['deploy_action'] || 'deploy'
 
   symlink_before_migrate '.env.production' => '.env'
+  symlink_before_migrate 'unicorn.rb' => 'config/unicorn/production.rb'
 
   before_migrate do
     %w(pids log system public).each do |dir|
