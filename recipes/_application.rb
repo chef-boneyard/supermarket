@@ -51,8 +51,8 @@ template "#{node['supermarket']['home']}/shared/.env.production" do
   notifies :restart, 'service[sidekiq]'
 end
 
-cookbook_file "#{node['supermarket']['home']}/shared/unicorn.rb" do
-  source 'unicorn.rb'
+template "#{node['supermarket']['home']}/shared/unicorn.rb" do
+  variables(app: app)
   notifies :restart, 'service[unicorn]'
 end
 
