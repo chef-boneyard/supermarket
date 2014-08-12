@@ -28,6 +28,10 @@ describe 'supermarket' do
     it { should be_linked_to '/srv/supermarket/shared/.env.production' }
   end
 
+  describe file('/srv/supermarket/current/config/unicorn/production.rb') do
+    it { should be_linked_to '/srv/supermarket/shared/unicorn.rb' }
+  end
+
   it 'writes feature flags to .env.production from the apps databag' do
     cmd = command 'cat /srv/supermarket/shared/.env.production'
     expect(cmd.stdout).to match 'FEATURES=tools,join_ccla'
