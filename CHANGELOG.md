@@ -1,6 +1,10 @@
 Supermarket
 ===========
 
+v2.7.2 (2014-08-12)
+-------------------
+- [#50] Fix broken symlink of .env.production
+
 v2.7.1 (2014-08-07)
 -------------------
 - [#48] Fix missing end statement
