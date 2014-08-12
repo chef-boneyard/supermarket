@@ -60,8 +60,10 @@ deploy_revision node['supermarket']['home'] do
   environment 'RAILS_ENV' => 'production'
   action app['deploy_action'] || 'deploy'
 
-  symlink_before_migrate '.env.production' => '.env'
-  symlink_before_migrate 'unicorn.rb' => 'config/unicorn/production.rb'
+  symlink_before_migrate({
+    '.env.production' => '.env',
+    'unicorn.rb' => 'config/unicorn/production.rb'
+  })
 
   before_migrate do
     %w(pids log system public).each do |dir|
