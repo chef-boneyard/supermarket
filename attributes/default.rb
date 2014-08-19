@@ -31,6 +31,7 @@ default['supermarket']['host'] = 'supermarket.getchef.com'
 default['supermarket']['protocol'] = 'https'
 default['supermarket']['sidekiq']['concurrency'] = '25'
 default['supermarket']['database']['pool'] = 25
+default['supermarket']['chef_vault'] = false
 default['supermarket']['data_bag'] = 'supermarket'
 # used primarily by CHEF operations to handle legacy tools and
 # configuration pointing at the HTTP (non-SSL) only
