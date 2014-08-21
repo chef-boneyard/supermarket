@@ -29,5 +29,6 @@
   "features": [
     "tools",
     "join_ccla"
-  ]
+  ],
+  "fieri_key": "fierisAuthToken"
 }
