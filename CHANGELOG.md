@@ -1,5 +1,6 @@
-Supermarket
-===========
+v2.8.0 (2014-08-25)
+-------------------
+- [#52] Add fieri configuration elements to ENV
 
 v2.7.2 (2014-08-12)
 -------------------
