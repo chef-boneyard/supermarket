@@ -31,5 +31,6 @@
     "tools",
     "join_ccla"
   ],
-  "fieri_key": "fierisAuthToken"
+  "fieri_key": "fierisAuthToken",
+  "fieri_key": "http://whatever-fieri-url.com"
 }
