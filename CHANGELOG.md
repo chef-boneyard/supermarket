@@ -1,3 +1,7 @@
+v2.9.0 (2014-08-28)
+-------------------
+- [#51] Add chef-vault support for the application data bag
+
 v2.8.0 (2014-08-25)
 -------------------
 - [#52] Add fieri configuration elements to ENV
