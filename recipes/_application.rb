@@ -33,7 +33,13 @@ directory "#{node['supermarket']['home']}/shared/bundle" do
   recursive true
 end
 
-app = data_bag_item(:apps, node['supermarket']['data_bag'])
+if node['supermarket']['chef_vault']
+  chef_gem 'chef-vault'
+  require 'chef-vault'
+  app = ChefVault::Item.load(:apps, node['supermarket']['data_bag'])
+else
+  app = data_bag_item(:apps, node['supermarket']['data_bag'])
+end
 
 template "#{node['supermarket']['home']}/shared/.env.production" do
   variables(app: app)
