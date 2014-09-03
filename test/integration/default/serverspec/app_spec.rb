@@ -11,7 +11,7 @@ describe 'supermarket' do
   end
 
   it 'still serves Chef Supermarket when Unicorn is restarted' do
-    restart = command 'sv t unicorn'
+    restart = command 'sv restart unicorn'
     restart.stdout
 
     sleep 5

@@ -7,6 +7,12 @@ exec 2>&1
 # to the service and redirect them to unicorn directly.
 #
 
+RUNIT_PID=$$
+CUR_PID_FILE=<%= node['supermarket']['home'] %>/shared/pids/unicorn.pid
+OLD_PID_FILE=$CUR_PID_FILE.oldbin
+
+echo "Runit service restarted (PID: $RUNIT_PID)"
+
 function is_unicorn_alive {
     set +e
     if [ -n $1 ] && kill -0 $1 >/dev/null 2>&1; then
@@ -15,16 +21,11 @@ function is_unicorn_alive {
     set -e
 }
 
-echo "Service PID: $$"
-
-CUR_PID_FILE=<%= node['supermarket']['home'] %>/shared/pids/unicorn.pid
-OLD_PID_FILE=$CUR_PID_FILE.oldbin
-
 if [ -e $OLD_PID_FILE ]; then
     OLD_PID=$(cat $OLD_PID_FILE)
-    echo "Waiting for existing master ($OLD_PID) to exit"
+    echo "Old master detected (PID: $OLD_PID), waiting for it to exit"
     while [ -n "$(is_unicorn_alive $OLD_PID)" ]; do
-        /bin/echo -n '.'
+        echo -n '.'
         sleep 2
     done
 fi
@@ -32,45 +33,72 @@ fi
 if [ -e $CUR_PID_FILE ]; then
     CUR_PID=$(cat $CUR_PID_FILE)
     if [ -n "$(is_unicorn_alive $CUR_PID)" ]; then
-        echo "Unicorn master already running. PID: $CUR_PID"
+        echo "Detected running Unicorn instance (PID: $CUR_PID)"
         RUNNING=true
     fi
 fi
 
-if [ ! $RUNNING ]; then
-    echo "Starting unicorn"
+function start {
+  unset ACTION
+  if [ $RUNNING ]; then
+    restart
+  else
+    echo 'Starting new Unicorn instance'
     cd <%= node['supermarket']['home'] %>/current
     export WEB_CONCURRENCY=<%= node['supermarket']['web_concurrency'] %>
     bundle exec unicorn -E production -c config/unicorn/production.rb -D
     sleep 3
     CUR_PID=$(cat $CUR_PID_FILE)
-fi
+  fi
+}
+
+function stop {
+  unset ACTION
+  echo 'Initializing graceful shutdown'
+  kill -QUIT $CUR_PID
+
+  while [ -n "$(is_unicorn_alive $CUR_PID)" ]; do
+    echo -n '.'
+    sleep 2
+  done
+
+  echo 'Unicorn stopped, exiting Runit process'
+  kill -9 $RUNIT_PID
+}
 
 function restart {
-    echo "Initialize new master with USR2"
-    kill -USR2 $CUR_PID
-    # Make runit restart to pick up new unicorn pid
+  unset ACTION
+  echo "Restart request captured, swapping old master (PID: $CUR_PID) for new master with USR2"
+  kill -USR2 $CUR_PID
+
+  sleep 2
+  echo 'Restarting Runit service to capture new master PID'
+  exit
+}
+
+function alarm {
+  unset ACTION
+  echo 'Unicorn process interrupted'
+}
+
+trap 'ACTION=stop' STOP TERM KILL
+trap 'ACTION=restart' QUIT USR2 INT
+trap 'ACTION=alarm' ALRM
+
+[ $RUNNING ] || ACTION=start
+
+if [ $ACTION ]; then
+  echo "Performing \"$ACTION\" action and going into sleep mode until new signal captured"
+elif [ $RUNNING ]; then
+  echo "Going into sleep mode until new signal captured"
+fi
+
+if [ $ACTION ] || [ $RUNNING ]; then
+  while true; do
+    [ "$ACTION" == 'start' ] && start
+    [ "$ACTION" == 'stop' ] && stop
+    [ "$ACTION" == 'restart' ] && restart
+    [ "$ACTION" == 'alarm' ] && alarm
     sleep 2
-    echo "Restarting service to capture new pid"
-    exit
-}
-
-function graceful_shutdown {
-    echo "Initializing graceful shutdown"
-    kill -QUIT $CUR_PID
-}
-
-function unicorn_interrupted {
-    echo "Unicorn process interrupted. Possibly a runit thing?"
-}
-
-trap restart HUP QUIT USR2 INT
-trap graceful_shutdown TERM KILL
-trap unicorn_interrupted ALRM
-
-echo "Waiting for current master to die. PID: ($CUR_PID)"
-while [ -n "$(is_unicorn_alive $CUR_PID)" ]; do
-    /bin/echo -n '.'
-    sleep 2
-done
-echo "You've killed a unicorn!"
+  done
+fi
