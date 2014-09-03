@@ -11,11 +11,7 @@ describe 'supermarket' do
   end
 
   it 'still serves Chef Supermarket when Unicorn is restarted' do
-    restart = command 'sv restart unicorn'
-    restart.stdout
-
-    sleep 5
-
+    restart = command 'sv 2 unicorn'
     cmd = command 'wget -O - http://localhost 2> /dev/null'
     expect(cmd.stdout).to match '<!DOCTYPE html>'
   end

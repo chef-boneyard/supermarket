@@ -56,7 +56,7 @@ end
 end
 
 service 'unicorn' do
-  restart_command 'sv restart unicorn'
+  restart_command 'sv 2 unicorn'
 end
 
 service 'sidekiq' do
