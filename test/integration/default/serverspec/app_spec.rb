@@ -10,6 +10,12 @@ describe 'supermarket' do
     expect(cmd.stdout).to match '<!DOCTYPE html>'
   end
 
+  it 'still serves Chef Supermarket when Unicorn is restarted' do
+    restart = command 'sv 2 unicorn'
+    cmd = command 'wget -O - http://localhost 2> /dev/null'
+    expect(cmd.stdout).to match '<!DOCTYPE html>'
+  end
+
   it 'has > 0 ICLAs' do
     cmd = command %Q{echo 'SELECT count("iclas".*) FROM "iclas";' | sudo -u postgres psql supermarket_production | grep '^(. row.*)'}
     cmd.stdout.match(/\((\d).*/)
