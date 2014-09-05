@@ -1,3 +1,9 @@
+v2.10.0 (2014-09-05)
+-------------------
+- [#49] Graceful restarts with runit and unicorn
+- [#57] Setting the max body size in nginx to 250m
+- [#58] Update bundler to 1.7.2
+
 v2.9.0 (2014-08-28)
 -------------------
 - [#51] Add chef-vault support for the application data bag
