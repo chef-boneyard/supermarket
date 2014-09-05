@@ -55,4 +55,6 @@ package 'libsqlite3-dev'
 # when postgresql isn't running on the same node.
 package 'libpq-dev'
 
-gem_package 'bundler'
+gem_package 'bundler' do
+  version '>= 1.7.2'
+end
