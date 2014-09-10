@@ -46,7 +46,7 @@ function start {
     echo 'Starting new Unicorn instance'
     cd <%= node['supermarket']['home'] %>/current
     export WEB_CONCURRENCY=<%= node['supermarket']['web_concurrency'] %>
-    bundle exec unicorn -E production -c config/unicorn/production.rb -D
+    exec chpst -u supermarket -P bundle exec unicorn -E production -c config/unicorn/production.rb -D
     sleep 3
     CUR_PID=$(cat $CUR_PID_FILE)
   fi
