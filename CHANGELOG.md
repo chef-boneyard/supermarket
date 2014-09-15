@@ -1,3 +1,7 @@
+v2.11.0 (2014-09-15)
+-------------------
+- [#59] Run unicorn as the supermarket user, not root
+
 v2.10.0 (2014-09-05)
 -------------------
 - [#49] Graceful restarts with runit and unicorn
