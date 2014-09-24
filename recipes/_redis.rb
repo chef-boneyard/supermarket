@@ -20,39 +20,26 @@
 
 # Redis is required for Sidekiq
 
-include_recipe 'supermarket::_apt'
+include_recipe 'redis::server'
 
-execute 'apt-get-update-redis-only' do
-  command "apt-get update -o Dir::Etc::sourcelist='sources.list.d/chris-lea-redis-server-precise.list' -o Dir::Etc::sourceparts='-' -o APT::Get::List-Cleanup='0'"
-  notifies :run, 'execute[apt-cache gencaches]'
-  action :nothing
-  ignore_failure true
-end
+# package 'redis-server'
 
-execute 'add-apt-repository[ppa:chris-lea/redis-server]' do
-  command 'add-apt-repository -y ppa:chris-lea/redis-server'
-  notifies :run, 'execute[apt-get-update-redis-only]', :immediately
-  not_if 'test -f /etc/apt/sources.list.d/chris-lea-redis-server-precise.list'
-end
+# directory '/var/lib/redis' do
+#   owner 'redis'
+#   group 'redis'
+#   mode '0750'
+#   recursive true
+# end
 
-package 'redis-server'
+# template '/etc/redis/redis.conf' do
+#   source 'redis.conf.erb'
+#   owner  'root'
+#   group  'root'
+#   mode   '0644'
+#   notifies :restart, 'service[redis-server]'
+# end
 
-directory '/var/lib/redis' do
-  owner 'redis'
-  group 'redis'
-  mode '0750'
-  recursive true
-end
-
-template '/etc/redis/redis.conf' do
-  source 'redis.conf.erb'
-  owner  'root'
-  group  'root'
-  mode   '0644'
-  notifies :restart, 'service[redis-server]'
-end
-
-service 'redis-server' do
-  supports restart: true
-  action [:enable, :start]
-end
+# service 'redis-server' do
+#   supports restart: true
+#   action [:enable, :start]
+# end
