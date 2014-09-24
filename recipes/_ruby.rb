@@ -41,7 +41,7 @@ include_recipe 'rubies'
   end
 end
 
-%w{ libxml2 libxml2-devel libxslt libxslt-devel sqlite-devel postgresql-libs }.each do |pkg|
+node['supermarket']['gem']['dep_packages'].each do |pkg|
   package pkg
 end
 
