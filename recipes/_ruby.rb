@@ -29,8 +29,8 @@
 #  notifies :run, "execute[source_etc_profile]"
 # end
 
-default[:rubies][:list] = [ 'ruby 2.0.0-p576' ]
-default[:rubies][:install_bundler] = true
+node.default[:rubies][:list] = [ 'ruby 2.0.0-p576' ]
+node.default[:rubies][:install_bundler] = true
 
 include_recipe 'rubies'
 
