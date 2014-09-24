@@ -62,4 +62,3 @@ end
 runit_service 'sidekiq' do
   sv_templates false
 end
-
