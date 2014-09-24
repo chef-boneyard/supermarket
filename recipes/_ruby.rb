@@ -17,8 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_apt'
-
 package 'ruby2.1'
 package 'ruby2.1-dev'
 
@@ -26,22 +24,9 @@ package 'ruby2.1-dev'
   link "/usr/bin/#{rb}" do
     to "/usr/bin/#{rb}2.1"
   end
+
+%w{ libxml2 libxml2-devel libxslt libxslt-devel sqlite-devel postgresql-libs }.each do |pkg|
+  package pkg
 end
 
-# the bundle contains gems that need to compile C extensions
-package 'build-essential'
-
-# Nokogiri requires XML
-package 'libxslt-dev'
-package 'libxml2-dev'
-
-# SQLite3 requires development headers
-package 'libsqlite3-dev'
-
-# `pg` requires development headers; this allows the application to deploy (bundle)
-# when postgresql isn't running on the same node.
-package 'libpq-dev'
-
-gem_package 'bundler' do
-  version '>= 1.7.2'
-end
+chef_gem 'bundler'
