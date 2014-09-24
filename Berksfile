@@ -20,4 +20,3 @@ cookbook '7-zip', git: 'https://github.com/sneal/7-zip.git'
 cookbook 'openssl', git: 'https://github.com/opscode-cookbooks/openssl.git'
 cookbook 'dmg', git: 'https://github.com/opscode-cookbooks/dmg.git'
 cookbook 'chef-sugar', git: 'https://github.com/sethvargo/chef-sugar.git'
-
