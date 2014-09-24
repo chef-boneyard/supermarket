@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-
 # execute "source_etc_profile" do
 #   command "source /etc/profile"
 #   action :nothing
