@@ -9,10 +9,17 @@ provisioner:
 
 platforms:
   - name: ubuntu-12.04
+    run_list:
+    - recipe[apt]
   - name: ubuntu-14.04
+    run_list:
+    - recipe[apt]
     attributes:
       postgres:
         version: "9.3"
+  - name: centos-6.5
+    run_list:
+      - recipe[yum]
 
 suites:
   - name: default
