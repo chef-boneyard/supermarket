@@ -31,5 +31,6 @@ user 'supermarket' do
 end
 
 file ::File.join(node['supermarket']['home'], '.gemrc') do
-  content 'gem: --no-ri --no-rdoc'
+  content 
+  'gem: --no-ri --no-rdoc --bindir /usr/bin'
 end
