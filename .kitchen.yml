@@ -3,15 +3,12 @@ driver:
   name: vagrant
 
 driver_config:
-  requre_chef_omnibus: true
   network:
-  - ["forwarded_port", {guest: 80, host: 8080}]
+  - ["forwarded_port", {guest: 80, host: 80}]
   - ["private_network", {ip: "33.33.33.11"}]
   customize:
-    memory: 2048
+    memory: 1024
     cpus: 2
-  cache:
-    scope: :box
 
 provisioner:
   name: chef_zero
