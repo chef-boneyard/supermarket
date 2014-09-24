@@ -13,11 +13,9 @@ cookbook 'rubies', git: 'https://github.com/ichilton/chef_rubies.git'
 cookbook 'python', git: 'https://github.com/poise/python.git'
 cookbook 'nodejs', git: 'https://github.com/redguide/nodejs.git'
 cookbook 'ark', git: 'https://github.com/burtlo/ark.git'
-cookbook 'postgresql', git: 'https://github.com/stephenlauck/postgresql.git'
+cookbook 'postgresql', git: 'https://github.com/hw-cookbooks/postgresql.git'
 cookbook 'git', git: 'https://github.com/jssjr/git.git'
 cookbook '7-zip', git: 'https://github.com/sneal/7-zip.git'
 cookbook 'openssl', git: 'https://github.com/opscode-cookbooks/openssl.git'
 cookbook 'dmg', git: 'https://github.com/opscode-cookbooks/dmg.git'
 cookbook 'chef-sugar', git: 'https://github.com/sethvargo/chef-sugar.git'
-
-
