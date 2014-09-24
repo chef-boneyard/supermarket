@@ -1,8 +1,17 @@
 ---
 driver:
   name: vagrant
+
+driver_config:
+  requre_chef_omnibus: true
+  network:
+  - ["forwarded_port", {guest: 80, host: 8080}]
+  - ["private_network", {ip: "33.33.33.11"}]
   customize:
-    memory: 1024
+    memory: 2048
+    cpus: 2
+  cache:
+    scope: :box
 
 provisioner:
   name: chef_zero
@@ -25,6 +34,7 @@ suites:
   - name: default
     data_bags_path: data_bags
     run_list:
+      - recipe[emacs]
       - recipe[supermarket::default]
     attributes:
       postgres:
