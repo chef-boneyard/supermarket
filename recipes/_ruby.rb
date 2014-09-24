@@ -30,13 +30,29 @@
 #  notifies :run, "execute[source_etc_profile]"
 # end
 
+node.default[:chruby_install][:default_ruby] = true
 node.default[:rubies][:list] = [ 'ruby 2.0.0-p576' ]
-node.default[:rubies][:install_bundler] = true
+node.default[:rubies][:bundler][:install] = false
 
 include_recipe 'rubies'
 
+%w{erb gem irb rake rdoc ri ruby testrb bundle bundler }.each do |rb|
+  link "/usr/bin/#{rb}" do
+    to "/opt/rubies/ruby-2.0.0-p576/bin/#{rb}"
+  end
+end
 
 %w{ libxml2 libxml2-devel libxslt libxslt-devel sqlite-devel postgresql-libs }.each do |pkg|
   package pkg
 end
 
+gem_package 'bundler' do
+  gem_binary("/opt/rubies/ruby-2.0.0-p576/bin/gem")
+  version '>= 1.7.3'
+end
+
+%w{ bundle bundler }.each do |rb|
+  link "/usr/bin/#{rb}" do
+    to "/opt/rubies/ruby-2.0.0-p576/bin/#{rb}"
+  end
+end
