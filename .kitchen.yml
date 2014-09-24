@@ -1,6 +1,10 @@
 ---
 driver:
   name: vagrant
+
+driver_config:
+  network:
+  - ["private_network", {ip: "172.16.0.1"}]
   customize:
     memory: 1024
 
