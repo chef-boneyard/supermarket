@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #
 # Author:: Brian Cobb (<brian@gofullstack.com>)
 # Author:: Brett Chalupa (<brett@gofullstack.com>)
@@ -20,6 +21,8 @@
 
 # Redis is required for Sidekiq
 
+node.default['redis']['config']['logfile'] = '/var/log/redis/redis-server.log'
+
 include_recipe 'redis::server'
 
 template '/etc/redis/redis.conf' do
@@ -29,9 +32,3 @@ template '/etc/redis/redis.conf' do
   mode   '0644'
   notifies :restart, 'service[redis-server]'
 end
-
-service 'redis-server' do
-  supports restart: true
-  action [:enable, :start]
-end
-
