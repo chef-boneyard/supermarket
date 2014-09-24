@@ -19,6 +19,11 @@
 
 include_recipe 'runit'
 
+directory '/etc/service' do
+  mode '0755'
+  recursive true
+end
+
 %w(unicorn sidekiq).each do |service|
   directory "/etc/sv/#{service}" do
     mode '0755'
