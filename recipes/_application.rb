@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_apt'
 include_recipe 'supermarket::_ruby'
 
 directory "#{node['supermarket']['home']}/shared" do
