@@ -20,3 +20,4 @@ cookbook 'openssl', git: 'https://github.com/opscode-cookbooks/openssl.git'
 cookbook 'dmg', git: 'https://github.com/opscode-cookbooks/dmg.git'
 cookbook 'chef-sugar', git: 'https://github.com/sethvargo/chef-sugar.git'
 
+
