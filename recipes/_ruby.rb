@@ -17,20 +17,24 @@
 # limitations under the License.
 #
 
-execute "source_etc_profile" do
-  command "source /etc/profile"
-  action :nothing
-end
+# execute "source_etc_profile" do
+#   command "source /etc/profile"
+#   action :nothing
+# end
 
-file "/etc/profile.d/chef_ruby.sh" do 
- content <<-EOD
-   export PATH=/opt/chef/embedded/bin/:$PATH
- EOD
- notifies :run, "execute[source_etc_profile]"
-end
+# file "/etc/profile.d/chef_ruby.sh" do 
+#  content <<-EOD
+#    export PATH=/opt/chef/embedded/bin/:$PATH
+#  EOD
+#  notifies :run, "execute[source_etc_profile]"
+# end
+
+default[:rubies][:list] = [ 'ruby 2.0.0-p576' ]
+default[:rubies][:install_bundler] = true
+
+include_recipe 'rubies'
 
 %w{ libxml2 libxml2-devel libxslt libxslt-devel sqlite-devel postgresql-libs }.each do |pkg|
   package pkg
 end
 
-chef_gem 'bundler'
