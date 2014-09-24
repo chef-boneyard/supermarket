@@ -17,12 +17,7 @@
 # limitations under the License.
 #
 
-package 'runit'
-
-directory '/etc/service' do
-  mode '0755'
-  recursive true
-end
+include_recipe 'runit'
 
 %w(unicorn sidekiq).each do |service|
   directory "/etc/sv/#{service}" do

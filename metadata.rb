@@ -6,7 +6,7 @@ license 'Apache v2.0'
 description 'Stands up the Supermarket application stack'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 
-%w{ yum apt build-essential python nodejs postgresql redis git }.each do |dep|
+%w{ yum apt build-essential python nodejs postgresql redis git nginx runit }.each do |dep|
 	depends dep
 end
 
