@@ -11,3 +11,4 @@ cookbook 'nginx', git: 'https://github.com/miketheman/nginx.git'
 group :integration do
   cookbook 'emacs'
 end
+
