@@ -31,6 +31,7 @@ suites:
   - name: default
     data_bags_path: data_bags
     run_list:
+      - recipe[emacs]
       - recipe[supermarket::default]
     attributes:
       postgres:
