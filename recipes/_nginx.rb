@@ -17,18 +17,13 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_apt'
+node.default['nginx']['default_site_enabled'] = false
 
-package 'nginx'
+include_recipe 'nginx'
 
 template '/etc/nginx/sites-available/default' do
   source 'supermarket.nginx.erb'
   notifies :reload, 'service[nginx]'
-end
-
-service 'nginx' do
-  supports reload: true
-  action [:enable, :start]
 end
 
 cookbook_file "/etc/logrotate.d/nginx" do
