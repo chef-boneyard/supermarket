@@ -55,10 +55,11 @@ end
   end
 end
 
-service 'unicorn' do
-  restart_command 'sv 2 unicorn'
+runit_service 'unicorn' do
+  sv_templates false
 end
 
-service 'sidekiq' do
-  restart_command 'sv t sidekiq'
+runit_service 'sidekiq' do
+  sv_templates false
 end
+
