@@ -7,7 +7,7 @@ driver_config:
   - ["forwarded_port", {guest: 80, host: 80}]
   - ["private_network", {ip: "33.33.33.10"}]
   customize:
-    memory: 1024
+    memory: 2024
     cpus: 2
 
 provisioner:
