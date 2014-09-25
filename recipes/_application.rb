@@ -46,13 +46,13 @@ template "#{node['supermarket']['home']}/shared/.env.production" do
   user 'supermarket'
   group 'supermarket'
 
-  notifies :restart, 'service[unicorn]'
-  notifies :restart, 'service[sidekiq]'
+  notifies :usr2, 'runit_service[unicorn]'
+  notifies :restart, 'runit_service[sidekiq]'
 end
 
 template "#{node['supermarket']['home']}/shared/unicorn.rb" do
   variables(app: app)
-  notifies :restart, 'service[unicorn]'
+  notifies :usr2, 'runit_service[unicorn]'
 end
 
 deploy_revision node['supermarket']['home'] do
@@ -115,8 +115,8 @@ deploy_revision node['supermarket']['home'] do
     end
   end
 
-  notifies :restart, 'service[unicorn]'
-  notifies :restart, 'service[sidekiq]'
+  notifies :usr2, 'runit_service[unicorn]'
+  notifies :restart, 'runit_service[sidekiq]'
 end
 
 template "/etc/logrotate.d/supermarket" do
