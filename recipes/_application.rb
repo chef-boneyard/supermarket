@@ -19,6 +19,12 @@
 
 include_recipe 'supermarket::_ruby'
 
+directory "#{node["supermarket"]["home"]}" do
+  user "supermarket"
+  group "supermarket"
+  mode 0755
+end
+
 directory "#{node['supermarket']['home']}/shared" do
   user 'supermarket'
   group 'supermarket'
@@ -114,6 +120,12 @@ deploy_revision node['supermarket']['home'] do
       environment 'RAILS_ENV' => 'production'
       cwd release_path
       command 'bundle exec rake db:seed'
+    end
+
+    execute "chown-release_path-assets" do
+      command "chown -R supermarket:supermarket #{release_path}/public/assets"
+      user "root"
+      action :run
     end
   end
 
