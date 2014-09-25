@@ -90,6 +90,8 @@ deploy_revision node['supermarket']['home'] do
 
   before_restart do
     execute 'asset:precompile' do
+      user 'supermarket'
+      group 'supermarket'
       environment 'RAILS_ENV' => 'production'
       cwd release_path
       command 'bundle exec rake assets:precompile'
