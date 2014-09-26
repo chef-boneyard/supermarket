@@ -90,6 +90,8 @@ deploy_revision node['supermarket']['home'] do
 
     execute 'bundle install' do
       cwd release_path
+      user 'supermarket'
+      group 'supermarket'
       command "bundle install --without test development --path=#{node['supermarket']['home']}/shared/bundle"
     end
   end
