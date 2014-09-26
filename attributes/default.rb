@@ -55,7 +55,7 @@ default['supermarket']['force_ssl']  = false
 default['supermarket']['ssl_crt_path'] = nil
 default['supermarket']['ssl_key_path'] = nil
 
-case node['platform_family']
+case node['platform']
 when 'redhat', 'centos', 'scientific', 'fedora', 'amazon', 'oracle'
   default['supermarket']['gem']['dep_packages'] = %w{ libxml2 libxml2-devel libxslt libxslt-devel sqlite-devel postgresql-libs }
 else
