@@ -19,6 +19,7 @@
 
 execute 'apt-get update' do
   ignore_failure true
+  notifies :run, 'execute[apt-cache gencaches]', :immediately
 end
 
 execute 'apt-cache gencaches' do
@@ -28,3 +29,9 @@ end
 
 package 'software-properties-common'
 package 'python-software-properties'
+
+execute 'add-apt-repository[ppa:brightbox]' do
+  command 'add-apt-repository ppa:brightbox/ruby-ng-experimental'
+  notifies :run, 'execute[apt-get update]', :immediately
+  not_if 'test -f /etc/apt/sources.list.d/brightbox-ruby-ng-experimental-precise.list -o -f /etc/apt/sources.list.d/brightbox-ruby-ng-experimental-trusty.list'
+end
