@@ -33,5 +33,9 @@
   "fieri": {
     "key": "fierisAuthToken",
     "url": "https://whatever-fieri-url.com"
+  },
+  "statsd": {
+    "url": "localhost",
+    "port": 9125
   }
 }
