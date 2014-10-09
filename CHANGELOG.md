@@ -1,3 +1,9 @@
+v2.12.0 (2014-10-09)
+-------------------
+- [#55] StatsD environment variables
+- [#56] CLA Report Email environment variable
+- [#63] Upgrade to Ruby 2.1.3
+
 v2.11.0 (2014-09-15)
 -------------------
 - [#59] Run unicorn as the supermarket user, not root
