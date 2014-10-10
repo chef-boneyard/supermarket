@@ -4,15 +4,13 @@ This cookbook deploys the [Supermarket application](https://github.com/opscode/s
 
 ## About
 
-This cookbook is split up into three different roles. Web, redis and database if you plan on running Supermarket
-on a single node you'll want to add all three of these roles to the run list. By default with all three roles applied
-to a single node Supermarket relies on Postgres peer authentication so there is no database password set.
+This cookbook is split up into three different roles: Web, Redis, and Database. If you plan on running Supermarket
+on a single node, just add the default recipe to the run_list.
 
-In the scenario that you need to connect to another Postgres database server you may override Supermarket's database
-configuration within the app/supermarket.json databag to configure a host, username and password.
+By default with all three roles applied to a single node Supermarket relies on PostgreSQL peer authentication so there is no database password set. If you need to connect to a separate PostgreSQL database server, you may override Supermarket's database configuration within the app/supermarket.json data bag to configure a host, username and password.
 
-In the scenario that you need to connect to another Redis server you may override Supermarket's Sidekiq configuration
-within the app/supermarket.json databag.
+If you need to connect to a separate Redis server, you may override Supermarket's Sidekiq configuration
+within the app/supermarket.json data bag.
 
 # License and Authors
 
