@@ -1,6 +1,10 @@
 require_relative 'spec_helper'
 
 describe 'supermarket::_nginx' do
+  before do
+    stub_command("test -f /etc/apt/sources.list.d/brightbox-ruby-ng-experimental-precise.list -o -f /etc/apt/sources.list.d/brightbox-ruby-ng-experimental-trusty.list").and_return(false)
+  end
+
   let(:chef_run) do
     ChefSpec::Runner.new do |node|
       node.automatic['cpu']['total'] = 1
