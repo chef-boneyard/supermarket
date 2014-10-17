@@ -17,8 +17,13 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_apt'
 include_recipe 'supermarket::_ruby'
+
+directory "#{node["supermarket"]["home"]}" do
+  user "supermarket"
+  group "supermarket"
+  mode 0755
+end
 
 directory "#{node['supermarket']['home']}/shared" do
   user 'supermarket'
@@ -47,13 +52,13 @@ template "#{node['supermarket']['home']}/shared/.env.production" do
   user 'supermarket'
   group 'supermarket'
 
-  notifies :restart, 'service[unicorn]'
-  notifies :restart, 'service[sidekiq]'
+  notifies :usr2, 'runit_service[unicorn]'
+  notifies :restart, 'runit_service[sidekiq]'
 end
 
 template "#{node['supermarket']['home']}/shared/unicorn.rb" do
   variables(app: app)
-  notifies :restart, 'service[unicorn]'
+  notifies :usr2, 'runit_service[unicorn]'
 end
 
 deploy_revision node['supermarket']['home'] do
@@ -85,12 +90,16 @@ deploy_revision node['supermarket']['home'] do
 
     execute 'bundle install' do
       cwd release_path
+      user 'supermarket'
+      group 'supermarket'
       command "bundle install --without test development --path=#{node['supermarket']['home']}/shared/bundle"
     end
   end
 
   before_restart do
     execute 'asset:precompile' do
+      user 'supermarket'
+      group 'supermarket'
       environment 'RAILS_ENV' => 'production'
       cwd release_path
       command 'bundle exec rake assets:precompile'
@@ -114,10 +123,16 @@ deploy_revision node['supermarket']['home'] do
       cwd release_path
       command 'bundle exec rake db:seed'
     end
+
+    execute "chown-release_path-assets" do
+      command "chown -R supermarket:supermarket #{release_path}/public/assets"
+      user "root"
+      action :run
+    end
   end
 
-  notifies :restart, 'service[unicorn]'
-  notifies :restart, 'service[sidekiq]'
+  notifies :usr2, 'runit_service[unicorn]'
+  notifies :restart, 'runit_service[sidekiq]'
 end
 
 template "/etc/logrotate.d/supermarket" do

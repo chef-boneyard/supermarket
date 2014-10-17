@@ -17,10 +17,8 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_apt'
 
-package 'postgresql'
-package 'postgresql-contrib'
+include_recipe 'postgresql::server'
 
 execute 'postgres[user]' do
   user 'postgres'
@@ -51,14 +49,3 @@ execute 'postgres[extensions][pg_trgm]' do
   not_if "echo '\dx' | psql #{node['postgres']['database']} | grep pg_trgm"
 end
 
-directory "/etc/postgresql/#{node['postgres']['version']}/main" do
-  recursive true
-end
-
-template "/etc/postgresql/#{node['postgres']['version']}/main/pg_hba.conf" do
-  notifies :restart, 'service[postgresql]', :immediately
-end
-
-service 'postgresql' do
-  action [:enable, :start]
-end
