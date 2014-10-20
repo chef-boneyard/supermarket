@@ -6,6 +6,9 @@
   "revision": "master",
   "sentry_url": "someSentryUrl",
   "redis_url": "redis://127.0.0.1:6379",
+  "chef_sign_up_url": "https://manage.opscode.com/signup?ref=community",
+  "chef_profile_url": "https://www.getchef.com/account",
+  "chef_identity_url": "https://id.opscode.com",
   "database": {
   },
   "smtp": {
