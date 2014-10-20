@@ -57,5 +57,31 @@ describe 'supermarket::default' do
 
       expect(resource).to notify('service[sidekiq]').to(:restart)
     end
+
+    context 'CHEF_OAUTH2_VERIFY_SSL' do
+      context 'when such an entry is in the data bag' do
+        it 'uses the value from the data bag' do
+          ChefSpec::Server.create_data_bag('apps',
+                                           'supermarket' => {
+                                             'chef_oauth2' => {
+                                               'verify_ssl' => 'false'
+                                             }
+                                           }
+          )
+
+          expect(chef_run)
+            .to render_file('/srv/supermarket/shared/.env.production')
+            .with_content('CHEF_OAUTH2_VERIFY_SSL=false')
+        end
+      end
+
+      context 'when such an entry is not in the data bag' do
+        it 'defaults to true' do
+          expect(chef_run)
+            .to render_file('/srv/supermarket/shared/.env.production')
+            .with_content('CHEF_OAUTH2_VERIFY_SSL=true')
+        end
+      end
+    end
   end
 end
