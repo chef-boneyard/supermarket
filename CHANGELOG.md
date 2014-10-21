@@ -1,3 +1,10 @@
+v2.14.0 (2014-10-21)
+--------------------
+- [#62] Add RHEL/CentOS Support
+- [#66] Add Configurable URLS
+- [#68] Update Ruby to 2.1.3
+- [#54] Add CHEF_OAUTH2_VERIFY_SSL flag
+
 v2.13.0 (2014-10-15)
 -------------------
 - [#65] Remove Segment.io
