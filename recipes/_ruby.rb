@@ -17,18 +17,6 @@
 # limitations under the License.
 #
 
-# execute "source_etc_profile" do
-#   command "source /etc/profile"
-#   action :nothing
-# end
-
-# file "/etc/profile.d/chef_ruby.sh" do
-#  content <<-EOD
-#    export PATH=/opt/chef/embedded/bin/:$PATH
-#  EOD
-#  notifies :run, "execute[source_etc_profile]"
-# end
-
 node.default[:chruby_install][:default_ruby] = true
 node.default[:rubies][:list] = [ 'ruby 2.1.3' ]
 node.default[:rubies][:bundler][:install] = false
