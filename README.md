@@ -12,6 +12,16 @@ By default with all three roles applied to a single node Supermarket relies on P
 If you need to connect to a separate Redis server, you may override Supermarket's Sidekiq configuration
 within the app/supermarket.json data bag.
 
+## Issues and Pull Requests
+
+Issues for this cookbook should be opened on
+[Supermarket GitHub Issues](https://github.com/opscode/supermarket/issues). Pull
+requests can be opened on this repository, but it would be nice to have an
+associated issue on the Supermarket repository.
+
+In order to make managing Supermarket-related issues and features easier for
+everybody, all issues are tracked on that repository.
+
 # License and Authors
 
 - Author: Brett Chalupa (<brett@gofullstack.com>)
