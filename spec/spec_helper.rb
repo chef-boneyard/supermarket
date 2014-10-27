@@ -10,6 +10,10 @@ def configure_chef
   key.flush
   Chef::Config[:node_name] = 'chef-zero'
   Chef::Config[:client_key] = key.path
+  RSpec.configure do |config|
+    config.platform = 'ubuntu'
+    config.version = '14.04'
+  end
 end
 
 def upload_databag(name, item)
