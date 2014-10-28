@@ -1,3 +1,7 @@
+v2.14.2 (2014-10-28)
+--------------------
+- [#73] Move to redisio cookbook for redis
+
 v2.14.1 (2014-10-27)
 --------------------
 - [#71] Fixes Specs and Redis Config

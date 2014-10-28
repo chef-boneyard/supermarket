@@ -1,5 +1,5 @@
 name 'supermarket'
-version '2.14.1'
+version '2.14.2'
 maintainer 'Chef Software, Inc.'
 maintainer_email 'cookbooks@getchef.com'
 license 'Apache v2.0'
@@ -10,7 +10,7 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 	depends dep
 end
 
-supports 'ubuntu' 
+supports 'ubuntu'
 supports 'centos'
 
 recipe 'supermarket::default',
