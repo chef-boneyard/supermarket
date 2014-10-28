@@ -1,8 +1,12 @@
 require_relative 'spec_helper'
 
 describe 'postgres' do
-  it 'running' do
+  it 'running', :if => os[:family] == 'ubuntu' do
     expect(process 'postgres').to be_running
+  end
+
+  it 'running', :if => os[:family] == 'redhat' do
+    expect(process 'postmaster').to be_running
   end
 
   it 'listen tcp socket' do

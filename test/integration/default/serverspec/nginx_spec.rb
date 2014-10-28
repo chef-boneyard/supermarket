@@ -22,8 +22,8 @@ describe 'nginx' do
   end
 
   it 'default site is supermarket' do
-    config = '/etc/nginx/sites-available/default'
-    expect(file '/etc/nginx/sites-enabled/default').to be_linked_to config
+    config = '/etc/nginx/sites-available/supermarket'
+    expect(file '/etc/nginx/sites-enabled/supermarket').to be_linked_to config
     expect(file(config).content).to match 'upstream unicorn'
   end
 end

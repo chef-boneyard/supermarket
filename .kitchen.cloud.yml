@@ -9,25 +9,30 @@ provisioner:
 
 platforms:
 - name: ubuntu-12.04
-  driver_plugin: digitalocean
+  driver_plugin: digital_ocean
   driver_config:
-    image_id: 3101045
-    flavor_id: 63
-    region_id: 4
-    ssh_key_ids: <%= ENV['DIGITAL_OCEAN_SSH_KEY_IDS'] %>
-    ssh_key: <%= ENV['DIGITAL_OCEAN_SSH_KEY_PATH'] %>
+    size: 4gb
+    region: <%= ENV['DIGITAL_OCEAN_REGION'] %>
+  run_list:
+  - recipe[apt]
 
 - name: ubuntu-14.04
-  driver_plugin: digitalocean
+  driver_plugin: digital_ocean
   driver_config:
-    image_id: 5141286
-    flavor_id: 63
-    region_id: 4
-    ssh_key_ids: <%= ENV['DIGITAL_OCEAN_SSH_KEY_IDS'] %>
-    ssh_key: <%= ENV['DIGITAL_OCEAN_SSH_KEY_PATH'] %>
+    size: 4gb
+    region: <%= ENV['DIGITAL_OCEAN_REGION'] %>
     attributes:
       postgres:
         version: "9.3"
+  run_list:
+  - recipe[apt]
+
+- name: centos-6.5
+  driver_plugin: digital_ocean
+  driver_config:
+    size: 4gb
+    region: <%= ENV['DIGITAL_OCEAN_REGION'] %>
+
 suites:
   - name: default
     data_bags_path: data_bags
