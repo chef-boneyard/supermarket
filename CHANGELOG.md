@@ -1,3 +1,7 @@
+v2.14.1 (2014-10-27)
+--------------------
+- [#71] Fixes Specs and Redis Config
+
 v2.14.0 (2014-10-21)
 --------------------
 - [#62] Add RHEL/CentOS Support
