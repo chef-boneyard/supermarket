@@ -17,8 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe 'supermarket::_ruby'
-
 directory "#{node["supermarket"]["home"]}" do
   user "supermarket"
   group "supermarket"
