@@ -1,3 +1,7 @@
+v2.14.4 (2014-10-30)
+--------------------
+- [#74] Decouple Ruby recipe from application deployment
+
 v2.14.2 (2014-10-28)
 --------------------
 - [#73] Move to redisio cookbook for redis
