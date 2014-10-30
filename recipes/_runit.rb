@@ -1,6 +1,7 @@
 #
 # Author:: Tristan O'Neil (<tristanoneil@gmail.com>)
-# Recipe:: runit
+# Author:: Joshua Timberman (<joshua@getchef.com>)
+# Recipe:: _runit
 #
 # Copyright 2014 Chef Software, Inc.
 #
@@ -19,47 +20,10 @@
 
 include_recipe 'runit'
 
-directory '/etc/service' do
-  mode '0755'
-  recursive true
-end
-
-%w(unicorn sidekiq).each do |service|
-  directory "/etc/sv/#{service}" do
-    mode '0755'
-    recursive true
-  end
-
-  directory "/etc/sv/#{service}/log" do
-    mode '0755'
-    recursive true
-  end
-
-  directory "/var/log/#{service}" do
-    mode '0755'
-    recursive true
-  end
-
-  template "/etc/sv/#{service}/run" do
-    source "#{service}.sv.erb"
-    mode '0755'
-  end
-
-  file "/etc/sv/#{service}/log/run" do
-    content "#!/bin/sh\nexec svlogd -tt /var/log/#{service}\n"
-    mode '0755'
-  end
-
-  link "/etc/service/#{service}" do
-    to "/etc/sv/#{service}"
-  end
-end
-
 runit_service 'unicorn' do
-  sv_templates false
+  default_logger true
 end
 
 runit_service 'sidekiq' do
-  sv_templates false
+  default_logger true
 end
-
