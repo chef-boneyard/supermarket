@@ -1,3 +1,7 @@
+# Disable rubocop in this file, because we do some perfectly
+# reasonable things that it doesn't like.
+#
+# rubocop:disable all
 require_relative 'spec_helper'
 
 describe 'supermarket' do

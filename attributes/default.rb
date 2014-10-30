@@ -57,7 +57,7 @@ default['supermarket']['ssl_key_path'] = nil
 
 case node['platform']
 when 'redhat', 'centos', 'scientific', 'fedora', 'amazon', 'oracle'
-  default['supermarket']['gem']['dep_packages'] = %w{ libxml2 libxml2-devel libxslt libxslt-devel sqlite-devel postgresql-libs }
+  default['supermarket']['gem']['dep_packages'] = %w(libxml2 libxml2-devel libxslt libxslt-devel sqlite-devel postgresql-libs)
 else
-  default['supermarket']['gem']['dep_packages'] = %w{ libxslt-dev libxml2-dev libsqlite3-dev libpq-dev }
+  default['supermarket']['gem']['dep_packages'] = %w(libxslt-dev libxml2-dev libsqlite3-dev libpq-dev)
 end
