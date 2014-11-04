@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-
 include_recipe 'postgresql::server'
 
 execute 'postgres[user]' do
@@ -48,4 +47,3 @@ execute 'postgres[extensions][pg_trgm]' do
   command "echo 'CREATE EXTENSION IF NOT EXISTS pg_trgm' | psql"
   not_if "echo '\dx' | psql #{node['postgres']['database']} | grep pg_trgm"
 end
-

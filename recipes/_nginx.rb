@@ -27,11 +27,11 @@ end
 
 nginx_site 'supermarket'
 
-cookbook_file "/etc/logrotate.d/nginx" do
-  source "logrotate-nginx"
-  owner "root"
-  group "root"
-  mode "0644"
+cookbook_file '/etc/logrotate.d/nginx' do
+  source 'logrotate-nginx'
+  owner 'root'
+  group 'root'
+  mode '0644'
 end
 
 file '/etc/nginx/conf.d/default.conf' do

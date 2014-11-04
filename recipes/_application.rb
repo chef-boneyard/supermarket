@@ -17,9 +17,9 @@
 # limitations under the License.
 #
 
-directory "#{node["supermarket"]["home"]}" do
-  user "supermarket"
-  group "supermarket"
+directory node['supermarket']['home'] do
+  user 'supermarket'
+  group 'supermarket'
   mode 0755
 end
 
@@ -69,10 +69,10 @@ deploy_revision node['supermarket']['home'] do
   environment 'RAILS_ENV' => 'production'
   action app['deploy_action'] || 'deploy'
 
-  symlink_before_migrate({
+  symlink_before_migrate(
     '.env.production' => '.env',
     'unicorn.rb' => 'config/unicorn/production.rb'
-  })
+  )
 
   before_migrate do
     %w(pids log system public).each do |dir|
@@ -111,7 +111,7 @@ deploy_revision node['supermarket']['home'] do
       environment 'RAILS_ENV' => 'production'
       cwd release_path
       command 'bundle exec rake sitemap:refresh:no_ping'
-      not_if { ::File.exists?('public/sitemap.xml.gz') }
+      not_if { ::File.exist?('public/sitemap.xml.gz') }
     end
 
     execute 'db:seed' do
@@ -122,9 +122,9 @@ deploy_revision node['supermarket']['home'] do
       command 'bundle exec rake db:seed'
     end
 
-    execute "chown-release_path-assets" do
+    execute 'chown-release_path-assets' do
       command "chown -R supermarket:supermarket #{release_path}/public/assets"
-      user "root"
+      user 'root'
       action :run
     end
   end
@@ -133,9 +133,9 @@ deploy_revision node['supermarket']['home'] do
   notifies :restart, 'runit_service[sidekiq]'
 end
 
-template "/etc/logrotate.d/supermarket" do
-  source "logrotate-supermarket.erb"
-  owner "root"
-  group "root"
-  mode "0644"
+template '/etc/logrotate.d/supermarket' do
+  source 'logrotate-supermarket.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
 end
