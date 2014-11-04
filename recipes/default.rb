@@ -1,5 +1,5 @@
 #
-# Author:: Tristan O'Neil (<tristanoneil@gmail.com>)
+# Author:: Stephen Lauck (<lauck@getchef.com>)
 # Recipe:: default
 #
 # Copyright 2014 Chef Software, Inc.
@@ -17,15 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe 'build-essential'
-include_recipe 'python'
-include_recipe 'nodejs'
-include_recipe 'supermarket::_postgres'
-include_recipe 'supermarket::_redis'
-include_recipe 'supermarket::_sidekiq'
-include_recipe 'git'
-include_recipe 'supermarket::_ruby'
-include_recipe 'supermarket::_nginx'
-include_recipe 'supermarket::_runit'
-include_recipe 'supermarket::_users'
-include_recipe 'supermarket::_application'
+chef_server_ingredient 'supermarket' do
+  ctl_command 'supermarket-ctl'
+  notifies :reconfigure, 'chef_server_ingredient[supermarket]'
+end
