@@ -50,16 +50,6 @@ attribute 'redis/maxmemory',
 
 grouping 'supermarket', :title => 'Supermarket options'
 
-attribute 'supermarket/cla_signature_notification_email',
-          :display_name => 'E-mail address used to notify about CLA signs',
-          :type         => 'string',
-          :required     => 'recommended'
-
-attribute 'supermarket/from_email',
-          :display_name => 'E-mail address used to send e-mails from',
-          :type         => 'string',
-          :required     => 'recommended'
-
 attribute 'supermarket/home',
           :display_name => 'Directory to deploy Supermarket application',
           :type         => 'string',

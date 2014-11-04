@@ -1,54 +1,11 @@
 {
-  "id": "supermarket_prod",
-  "description": "This is an example data bag that is used to standup Supermarket if you use this please please please change the default values for security sake.",
-  "secret_key_base": "someSecret",
+  "id": "supermarket",
+  "description": "This is a test data bag just to verify that Supermarket can load data bags from node attributes. For a full data bag reference, look at supermarket.json.",
   "repository": "https://github.com/opscode/supermarket.git",
   "revision": "master",
-  "sentry_url": "someSentryUrl",
-  "redis_url": "redis://127.0.0.1:6379",
-  "chef_sign_up_url": "https://manage.opscode.com/signup?ref=community",
-  "chef_profile_url": "https://www.getchef.com/account",
-  "chef_identity_url": "https://id.opscode.com",
-  "chef_domain": "getchef.com",
-  "chef_server_url": "https://api.opscode.com",
-  "chef_www_url": "https://www.getchef.com",
-  "chef_blog_url": "https://www.getchef.com/blog",
-  "chef_docs_url": "https://docs.getchef.com",
-  "chef_downloads_url": "https://downloads.getchef.com",
-  "chef_manage_url": "https://api.opscode.com",
-  "chef_oauth2_url": "https://api.opscode.com",
-  "learn_chef_url": "https://learn.getchef.com",
-  "database": {
-  },
-  "smtp": {
-    "address": "someaddress.com",
-    "port": 123,
-    "user": "someUser",
-    "password": "somePassword"
-  },
-  "github": {
-    "key": "someKey",
-    "secret": "someSecret"
-  },
-  "chef_oauth2": {
-    "app_id": "someAppID",
-    "secret": "someSecret"
-  },
-  "curry": {
-    "github_access_token": "someAccessToken",
-    "cla_location": "claUrl",
-    "pubsubhubbub_secret": "someSecret"
-  },
-  "features": [
-    "tools",
-    "join_ccla"
-  ],
-  "fieri": {
-    "key": "fierisAuthToken",
-    "url": "https://whatever-fieri-url.com"
-  },
-  "statsd": {
-    "url": "localhost",
-    "port": 9125
+  "deploy_action": "force_deploy",
+  "env": {
+    "sentry_url": "someSentryUrl",
+    "redis_url": "redis://127.0.0.1:6379",
   }
 }

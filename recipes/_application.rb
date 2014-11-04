@@ -44,8 +44,15 @@ else
   app = data_bag_item(:apps, node['supermarket']['data_bag'])
 end
 
-template "#{node['supermarket']['home']}/shared/.env.production" do
-  variables(app: app)
+file "#{node['supermarket']['home']}/shared/.env.production" do
+  content Supermarket::Config.environment_variables_from(
+    app['env'].merge({
+      'db_username' => node['postgres']['user'],
+      'host' => node['supermarket']['host'],
+      'port' => node['supermarket']['port'],
+      'protocol' => node['supermarket']['protocol']
+    })
+  )
 
   user 'supermarket'
   group 'supermarket'

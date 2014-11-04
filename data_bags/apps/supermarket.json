@@ -1,54 +1,53 @@
 {
   "id": "supermarket",
-  "description": "This is an example data bag that is used to standup Supermarket if you use this please please please change the default values for security sake.",
-  "secret_key_base": "someSecret",
+  "description": "This is an example data bag that is used to standup Supermarket. If you use this, please change the default values for the sake of security.",
   "repository": "https://github.com/opscode/supermarket.git",
   "revision": "master",
-  "sentry_url": "someSentryUrl",
-  "redis_url": "redis://127.0.0.1:6379",
   "deploy_action": "force_deploy",
-  "chef_sign_up_url": "https://manage.opscode.com/signup?ref=community",
-  "chef_profile_url": "https://www.getchef.com/account",
-  "chef_identity_url": "https://id.opscode.com",
-  "chef_domain": "getchef.com",
-  "chef_server_url": "https://api.opscode.com",
-  "chef_www_url": "https://www.getchef.com",
-  "chef_blog_url": "https://www.getchef.com/blog",
-  "chef_docs_url": "https://docs.getchef.com",
-  "chef_downloads_url": "https://downloads.getchef.com",
-  "chef_manage_url": "https://api.opscode.com",
-  "chef_oauth2_url": "https://api.opscode.com",
-  "learn_chef_url": "https://learn.getchef.com",
-  "smtp": {
-    "address": "someaddress.com",
-    "port": 123,
-    "user": "someUser",
-    "password": "somePassword"
-  },
-  "github": {
-    "key": "someKey",
-    "secret": "someSecret"
-  },
-  "chef_oauth2": {
-    "app_id": "someAppID",
-    "secret": "someSecret",
-    "url": "https://id.opscode.com"
-  },
-  "curry": {
+  "env": {
+    "cdn_url": "http://example.com",
+    "chef_blog_url": "https://www.getchef.com/blog",
+    "chef_docs_url": "https://docs.getchef.com",
+    "chef_domain": "getchef.com",
+    "chef_downloads_url": "https://downloads.getchef.com",
+    "chef_identity_url": "https://id.opscode.com",
+    "chef_manage_url": "https://api.opscode.com",
+    "chef_oauth2_app_id": "someAppID",
+    "chef_oauth2_secret": "someSecret",
+    "chef_oauth2_url": "https://api.opscode.com",
+    "chef_oauth2_verify_ssl": true,
+    "chef_profile_url": "https://www.getchef.com/account",
+    "chef_server_url": "https://api.opscode.com",
+    "chef_sign_up_url": "https://manage.opscode.com/signup?ref=community",
+    "chef_www_url": "https://www.getchef.com",
+    "cla_report_email": "someone@example.com",
+    "cla_signature_notification_email": "someone@example.com",
+    "curry_cla_location": "claUrl",
+    "curry_success_label": "Signed CLA",
+    "devise_secret_key": "someSecret",
+    "features": "tools,join_ccla",
+    "fieri_key": "fierisAuthToken",
+    "fieri_url": "https://whatever-fieri-url.com",
+    "from_email": "someone@example.com",
     "github_access_token": "someAccessToken",
-    "cla_location": "claUrl",
-    "pubsubhubbub_secret": "someSecret"
-  },
-  "features": [
-    "tools",
-    "join_ccla"
-  ],
-  "fieri": {
-    "key": "fierisAuthToken",
-    "url": "https://whatever-fieri-url.com"
-  },
-  "statsd": {
-    "url": "localhost",
-    "port": 9125
+    "github_key": "someKey",
+    "github_secret": "someSecret",
+    "google_analytics_id": "some-id",
+    "learn_chef_url": "https://learn.getchef.com",
+    "new_relic_app_name": "Supermarket",
+    "new_relic_license_key": "abc123",
+    "pubsubhubbub_secret": "someSecret",
+    "redis_url": "redis://127.0.0.1:6379",
+    "s3_access_key_id": "my-access-key-id",
+    "s3_bucket": "someBucket",
+    "s3_secret_access_key": "abc123",
+    "secret_key_base": "someSecret",
+    "sentry_url": "someSentryUrl",
+    "smtp_address": "someaddress.com",
+    "smtp_password": "somePassword",
+    "smtp_port": 123,
+    "smtp_user_name": "someUser",
+    "statsd_port": 9125,
+    "statsd_url": "localhost"
   }
 }

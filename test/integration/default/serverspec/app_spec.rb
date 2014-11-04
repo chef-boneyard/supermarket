@@ -35,15 +35,71 @@ describe 'supermarket' do
   end
 
   describe file('/srv/supermarket/current/.env') do
+    let(:cmd) { command 'cat /srv/supermarket/shared/.env.production' }
+
     it { should be_linked_to '/srv/supermarket/shared/.env.production' }
+
+    it 'should contain an ENV var for every entry in the env data bag hash' do
+      actual_keys = cmd.stdout.strip.split("\n").sort.map { |x| x.split('=').first }
+      expected_keys = %w(
+        CDN_URL
+        CHEF_BLOG_URL
+        CHEF_DOCS_URL
+        CHEF_DOMAIN
+        CHEF_DOWNLOADS_URL
+        CHEF_IDENTITY_URL
+        CHEF_MANAGE_URL
+        CHEF_OAUTH2_APP_ID
+        CHEF_OAUTH2_SECRET
+        CHEF_OAUTH2_URL
+        CHEF_OAUTH2_VERIFY_SSL
+        CHEF_PROFILE_URL
+        CHEF_SERVER_URL
+        CHEF_SIGN_UP_URL
+        CHEF_WWW_URL
+        CLA_REPORT_EMAIL
+        CLA_SIGNATURE_NOTIFICATION_EMAIL
+        CURRY_CLA_LOCATION
+        CURRY_SUCCESS_LABEL
+        DB_USERNAME
+        DEVISE_SECRET_KEY
+        FEATURES
+        FIERI_KEY
+        FIERI_URL
+        FROM_EMAIL
+        GITHUB_ACCESS_TOKEN
+        GITHUB_KEY
+        GITHUB_SECRET
+        GOOGLE_ANALYTICS_ID
+        HOST
+        LEARN_CHEF_URL
+        NEW_RELIC_APP_NAME
+        NEW_RELIC_LICENSE_KEY
+        PROTOCOL
+        PUBSUBHUBBUB_SECRET
+        REDIS_URL
+        S3_ACCESS_KEY_ID
+        S3_BUCKET
+        S3_SECRET_ACCESS_KEY
+        SECRET_KEY_BASE
+        SENTRY_URL
+        SMTP_ADDRESS
+        SMTP_PASSWORD
+        SMTP_PORT
+        SMTP_USER_NAME
+        STATSD_PORT
+        STATSD_URL
+      )
+
+      expect(actual_keys).to eql(expected_keys)
+    end
+
+    it 'writes feature flags to .env.production from the apps databag' do
+      expect(cmd.stdout).to match 'FEATURES=tools,join_ccla'
+    end
   end
 
   describe file('/srv/supermarket/current/config/unicorn/production.rb') do
     it { should be_linked_to '/srv/supermarket/shared/unicorn.rb' }
-  end
-
-  it 'writes feature flags to .env.production from the apps databag' do
-    cmd = command 'cat /srv/supermarket/shared/.env.production'
-    expect(cmd.stdout).to match 'FEATURES=tools,join_ccla'
   end
 end
