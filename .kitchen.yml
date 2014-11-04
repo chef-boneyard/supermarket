@@ -4,7 +4,7 @@ driver:
 
 driver_config:
   network:
-  - ["forwarded_port", {guest: 80, host: 80}]
+  - ["forwarded_port", {guest: 80, host: 8080}]
   - ["private_network", {ip: "33.33.33.10"}]
   customize:
     memory: 2024
@@ -20,9 +20,6 @@ platforms:
   - name: ubuntu-14.04
     run_list:
     - recipe[apt]
-    attributes:
-      postgres:
-        version: "9.3"
   - name: centos-6.5
     run_list:
       - recipe[yum]
@@ -33,7 +30,4 @@ suites:
     run_list:
       - recipe[supermarket::default]
     attributes:
-      postgres:
-        auth_method: trust
-      nginx:
-        default_site_enabled: false
+
