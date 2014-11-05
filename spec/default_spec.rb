@@ -1,5 +1,4 @@
 require 'tempfile'
-
 require_relative 'spec_helper'
 
 describe 'supermarket::default' do
@@ -16,6 +15,8 @@ describe 'supermarket::default' do
     stub_command('ruby -v | grep 2.1.3').and_return(false)
     stub_command('echo \'dx\' | psql supermarket_production | grep plpgsql').and_return(false)
     stub_command('echo \'dx\' | psql supermarket_production | grep pg_trgm').and_return(false)
+    stub_command('git --version >/dev/null').and_return(false)
+    stub_command('which nginx').and_return(false)
   end
 
   let(:chef_run) do
@@ -49,13 +50,13 @@ describe 'supermarket::default' do
     it 'notifies unicorn to restart' do
       resource = chef_run.template('/srv/supermarket/shared/.env.production')
 
-      expect(resource).to notify('service[unicorn]').to(:restart)
+      expect(resource).to notify('runit_service[unicorn]').to(:usr2)
     end
 
     it 'notifies sidekiq to restart' do
       resource = chef_run.template('/srv/supermarket/shared/.env.production')
 
-      expect(resource).to notify('service[sidekiq]').to(:restart)
+      expect(resource).to notify('runit_service[sidekiq]').to(:restart)
     end
 
     context 'CHEF_OAUTH2_VERIFY_SSL' do

@@ -1,0 +1,10 @@
+bundler_args: --without integration
+language: ruby
+rvm:
+  - 2.1.3
+before_script:
+  - bundle exec berks install
+script:
+  - bundle exec rake test
+notifications:
+  email: false
