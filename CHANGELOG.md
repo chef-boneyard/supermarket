@@ -1,3 +1,9 @@
+v2.15.0 (2014-11-06)
+--------------------
+- [#75] Lint and cleanup
+- [#72] Travis CI integration
+- [#78] Fixing missing references to deleted recipes
+
 v2.14.4 (2014-10-30)
 --------------------
 - [#74] Decouple Ruby recipe from application deployment
