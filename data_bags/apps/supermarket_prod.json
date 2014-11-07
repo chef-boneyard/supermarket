@@ -1,11 +1,11 @@
 {
-  "id": "supermarket",
+  "id": "supermarket_prod",
   "description": "This is a test data bag just to verify that Supermarket can load data bags from node attributes. For a full data bag reference, look at supermarket.json.",
   "repository": "https://github.com/opscode/supermarket.git",
   "revision": "master",
   "deploy_action": "force_deploy",
   "env": {
     "sentry_url": "someSentryUrl",
-    "redis_url": "redis://127.0.0.1:6379",
+    "redis_url": "redis://127.0.0.1:6379"
   }
 }

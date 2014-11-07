@@ -46,12 +46,12 @@ end
 
 file "#{node['supermarket']['home']}/shared/.env.production" do
   content Supermarket::Config.environment_variables_from(
-    app['env'].merge({
+    app['env'].merge(
       'db_username' => node['postgres']['user'],
       'host' => node['supermarket']['host'],
       'port' => node['supermarket']['port'],
       'protocol' => node['supermarket']['protocol']
-    })
+    )
   )
 
   user 'supermarket'

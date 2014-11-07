@@ -16,7 +16,7 @@ module Supermarket
     # WUT=4
     #
     def self.environment_variables_from(data)
-      data.reduce([]) do |result, (k,v)|
+      data.reduce([]) do |result, (k, v)|
         if v.is_a?(String) || v.is_a?(Numeric) || v == true || v == false
           result << "#{k.upcase}=#{v}"
         end
