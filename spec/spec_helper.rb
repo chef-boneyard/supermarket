@@ -3,6 +3,13 @@ require 'chefspec/berkshelf'
 
 require 'json'
 
+at_exit { ChefSpec::Coverage.report! }
+
+RSpec.configure do |c|
+  c.filter_run :focus => true
+  c.run_all_when_everything_filtered = true
+end
+
 def configure_chef
   RSpec.configure do |config|
     config.platform = 'ubuntu'
