@@ -65,10 +65,10 @@ server {
 <%   end -%>
 
 server {
-  listen 443;
-<%   if node['supermarket']['ssl_crt_name'] && node['supermarket']['ssl_key_name'] -%>
-  ssl_certificate <%= node['supermarket']['ssl_crt_name'] %>
-  ssl_certificate_key <%= node['supermarket']['ssl_key_name'] %>
+  listen 443 ssl;
+<%   if node['supermarket']['ssl_crt_path'] && node['supermarket']['ssl_key_path'] -%>
+  ssl_certificate <%= node['supermarket']['ssl_crt_path'] %>;
+  ssl_certificate_key <%= node['supermarket']['ssl_key_path'] %>;
   ssl_ciphers                   HIGH:!kEDH:!ADH:!MD5;
   ssl_prefer_server_ciphers     on;
   ssl_protocols                 SSLv3 TLSv1;
