@@ -1,10 +1,10 @@
 require 'tempfile'
+require 'pry'
 require_relative 'spec_helper'
 
 describe 'supermarket::default' do
   before do
     configure_chef
-    upload_databag('apps', 'supermarket')
 
     stub_command('test -f /etc/apt/sources.list.d/chris-lea-node_js-precise.list').and_return(false)
     stub_command('test -f /etc/apt/sources.list.d/brightbox-ruby-ng-experimental-precise.list -o -f /etc/apt/sources.list.d/brightbox-ruby-ng-experimental-trusty.list').and_return(false)
@@ -20,8 +20,9 @@ describe 'supermarket::default' do
   end
 
   let(:chef_run) do
-    ChefSpec::Runner.new do |node|
+    ChefSpec::ServerRunner.new do |node, server|
       node.automatic['cpu']['total'] = 1
+      server.create_data_bag('apps', get_databag_item('apps', 'supermarket'))
     end.converge(described_recipe)
   end
 
@@ -31,14 +32,11 @@ describe 'supermarket::default' do
 
   context 'should be able to use an alternate databag' do
     let(:chef_run) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::ServerRunner.new do |node, server|
         node.set['supermarket']['data_bag'] = 'supermarket_prod'
+        server.create_data_bag('apps', get_databag_item('apps', 'supermarket_prod'))
         node.automatic['cpu']['total'] = 1
       end.converge(described_recipe)
-    end
-
-    before do
-      upload_databag('apps', 'supermarket_prod')
     end
 
     it 'compiles' do
@@ -61,18 +59,18 @@ describe 'supermarket::default' do
 
     context 'CHEF_OAUTH2_VERIFY_SSL' do
       context 'when such an entry is in the data bag' do
-        it 'uses the value from the data bag' do
-          ChefSpec::Server.create_data_bag('apps',
-                                           'supermarket' => {
-                                             'chef_oauth2' => {
-                                               'verify_ssl' => 'false'
-                                             }
-                                           }
-          )
+        let(:chef_run) do
+          ChefSpec::ServerRunner.new do |node, server|
+            node.automatic['cpu']['total'] = 1
+            databag_item = get_databag_item('apps', 'supermarket')
+            databag_item['supermarket']['chef_oauth2']['verify_ssl'] = 'false'
+            server.create_data_bag('apps', databag_item)
+          end.converge(described_recipe)
+        end
 
-          expect(chef_run)
-            .to render_file('/srv/supermarket/shared/.env.production')
-            .with_content('CHEF_OAUTH2_VERIFY_SSL=false')
+        it 'uses the value from the data bag' do
+
+          expect(chef_run).to render_file('/srv/supermarket/shared/.env.production').with_content('CHEF_OAUTH2_VERIFY_SSL=false')
         end
       end
 

@@ -10,8 +10,7 @@ group :development do
 end
 
 group :test do
-  gem 'chefspec', '~> 4.0.2'
-  gem 'chef-zero', '~> 2.0.0'
+  gem 'chefspec', '~> 4.2.0.beta.1'
 end
 
 group :integration do
