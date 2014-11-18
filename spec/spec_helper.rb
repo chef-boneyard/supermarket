@@ -13,7 +13,5 @@ end
 
 def get_databag_item(name, item)
   filename = File.join('.', 'data_bags', name, "#{item}.json")
-
-  {item => JSON.parse(IO.read(filename))}
-
+  { item => JSON.parse(IO.read(filename)) }
 end
