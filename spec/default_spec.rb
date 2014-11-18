@@ -1,5 +1,3 @@
-require 'tempfile'
-require 'pry'
 require_relative 'spec_helper'
 
 describe 'supermarket::default' do
