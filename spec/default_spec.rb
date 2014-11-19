@@ -61,7 +61,7 @@ describe 'supermarket::default' do
           ChefSpec::ServerRunner.new do |node, server|
             node.automatic['cpu']['total'] = 1
             databag_item = get_databag_item('apps', 'supermarket')
-            databag_item['supermarket']['chef_oauth2']['verify_ssl'] = 'false'
+            databag_item['supermarket']['env']['chef_oauth2_verify_ssl'] = 'false'
             server.create_data_bag('apps', databag_item)
           end.converge(described_recipe)
         end
