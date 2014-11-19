@@ -25,6 +25,7 @@
     "curry_cla_location": "claUrl",
     "curry_success_label": "Signed CLA",
     "devise_secret_key": "someSecret",
+    "enforce_privacy": true,
     "features": "tools,join_ccla",
     "fieri_key": "fierisAuthToken",
     "fieri_url": "https://whatever-fieri-url.com",
