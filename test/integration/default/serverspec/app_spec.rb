@@ -63,6 +63,7 @@ describe 'supermarket' do
         CURRY_SUCCESS_LABEL
         DB_USERNAME
         DEVISE_SECRET_KEY
+        ENFORCE_PRIVACY
         FEATURES
         FIERI_KEY
         FIERI_URL
