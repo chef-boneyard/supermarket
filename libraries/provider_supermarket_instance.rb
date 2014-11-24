@@ -4,41 +4,59 @@ class Chef
       use_inline_resources if defined?(use_inline_resources)
 
       def whyrun_supported?
-        false
+        true
       end
 
       action :create do
+
+        config = {}
+
+        if new_resource.chef_server_url
+          config['chef_server_url'] = new_resource.chef_server_url
+        end
+
+        if new_resource.chef_oauth2_app_id
+          config['chef_oauth2_app_id'] = new_resource.chef_oauth2_app_id
+        end
+
+        if new_resource.chef_oauth2_secret
+          config['chef_oauth2_secret'] = new_resource.chef_oauth2_secret
+        end
+
+        if new_resource.ssl_cert || new_resource.ssl_key
+          unless new_resource.ssl_cert && new_resource.ssl_key
+            raise 'You must specify ssl_cert and ssl_key or none at all.'
+          end
+          config['ssl'] = {}
+          config['ssl']['certificate'] = '/etc/supermarket/ssl/ssl.crt'
+          config['ssl']['certificate_key'] = '/etc/supermarket/ssl/ssl.key'
+        end
+
+        config.keys.each do |attrs|
+          new_resource.options.keys.each do |opts|
+            if opts == attrs
+              raise "You cannot set #{opts} when it is already set as an attribute"
+            end
+          end
+        end
+
+        config.merge!(new_resource.options)
+
+        ['chef_server_url', 'chef_oauth2_app_id', 'chef_oauth2_secret'].each do |required|
+          unless config[required]
+            raise '#{required} is a required attribute'
+          end
+        end
+
         case node['platform_family']
         when 'debian'
-
-          package "apt-transport-https"
-
-          apt_repository 'chef-stable' do
-            uri "https://packagecloud.io/chef/stable/ubuntu/"
-            key 'https://packagecloud.io/gpg.key'
-            distribution node['lsb']['codename']
-            deb_src true
-            trusted true
-            components %w( main )
+          packagecloud_repo 'chef/stable' do
+            type 'deb'
           end
-
-          # Performs an apt-get update
-          run_context.include_recipe 'apt::default'
-
         when 'rhel'
-
-          major_version = node['platform_version'].split('.').first
-
-          yum_repository 'chef-stable' do
-            description 'Chef Stable Repo'
-            baseurl "https://packagecloud.io/chef/stable/el/#{major_version}/$basearch"
-            gpgkey 'https://downloads.getchef.com/chef.gpg.key'
-            sslverify true
-            sslcacert '/etc/pki/tls/certs/ca-bundle.crt'
-            gpgcheck true
-            action :create
+          packagecloud_repo 'chef/stable' do
+            type 'rpm'
           end
-
         else
           # TODO: probably don't actually want to fail out?  Say, on any platform where
           # this would have to be done manually.
@@ -46,11 +64,43 @@ class Chef
         end
 
         package 'supermarket'
+
+        directory '/etc/supermarket'
+
+        # Handle SSL
+        if new_resource.ssl_cert
+          directory '/etc/supermarket/ssl'
+
+          file '/etc/supermarket/ssl/ssl.key' do
+            owner 'root'
+            group 'root'
+            mode '0600'
+            content new_resource.ssl_key
+          end
+
+          file '/etc/supermarket/ssl/ssl.crt' do
+            owner 'root'
+            group 'root'
+            mode '0600'
+            content new_resource.ssl_cert
+          end
+
+        end
+
+        file '/etc/supermarket/supermarket.json' do
+          content config.to_json
+          notifies :run, 'execute[reconfigure supermarket]'
+        end
+
+        execute 'reconfigure supermarket' do
+          command '/opt/supermarket/bin/supermarket-ctl reconfigure'
+          action :nothing
+        end
+
       end
 
       action :delete do
       end
-
     end
   end
 end

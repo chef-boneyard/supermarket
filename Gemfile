@@ -7,6 +7,7 @@ group :development do
   gem 'foodcritic', '~> 4.0'
   gem 'license_finder', '~> 1.1.1'
   gem 'rubocop', '~> 0.26.1'
+  gem 'pry'
 end
 
 group :test do

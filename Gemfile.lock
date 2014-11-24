@@ -246,6 +246,7 @@ DEPENDENCIES
   foodcritic (~> 4.0)
   kitchen-vagrant (~> 0.15.0)
   license_finder (~> 1.1.1)
+  pry
   rake
   rubocop (~> 0.26.1)
   serverspec (~> 2.1.0)
