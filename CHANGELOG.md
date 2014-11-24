@@ -1,3 +1,10 @@
+v3.0.0 (2014-11-21)
+--------------------
+- [#79] Correct references to ssl cert and key path
+- [#80] Update specs
+- [#76] Add new URL variables
+- [#81] Add privacy flag
+
 v2.15.0 (2014-11-06)
 --------------------
 - [#75] Lint and cleanup

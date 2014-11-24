@@ -27,3 +27,5 @@ TrailingComma:
   Enabled: false
 WordArray:
   Enabled: false
+EachWithObject:
+  Enabled: false

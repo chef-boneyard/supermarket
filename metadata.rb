@@ -1,5 +1,5 @@
 name 'supermarket'
-version '2.15.0'
+version '3.0.0'
 maintainer 'Chef Software, Inc.'
 maintainer_email 'cookbooks@getchef.com'
 license 'Apache v2.0'
@@ -49,16 +49,6 @@ attribute 'redis/maxmemory',
           :default      => '64mb'
 
 grouping 'supermarket', :title => 'Supermarket options'
-
-attribute 'supermarket/cla_signature_notification_email',
-          :display_name => 'E-mail address used to notify about CLA signs',
-          :type         => 'string',
-          :required     => 'recommended'
-
-attribute 'supermarket/from_email',
-          :display_name => 'E-mail address used to send e-mails from',
-          :type         => 'string',
-          :required     => 'recommended'
 
 attribute 'supermarket/home',
           :display_name => 'Directory to deploy Supermarket application',
