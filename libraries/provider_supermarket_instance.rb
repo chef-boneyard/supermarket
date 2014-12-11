@@ -58,8 +58,6 @@ class Chef
             type 'rpm'
           end
         else
-          # TODO: probably don't actually want to fail out?  Say, on any platform where
-          # this would have to be done manually.
           raise "I don't know how to install supermarket for platform family: #{node['platform_family']}"
         end
 
