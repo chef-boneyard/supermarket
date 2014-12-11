@@ -97,8 +97,6 @@ class Chef
 
       end
 
-      action :delete do
-      end
     end
   end
 end
