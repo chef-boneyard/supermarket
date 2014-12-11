@@ -1,7 +1,4 @@
-# Disable rubocop in this file, because we do some perfectly
-# reasonable things that it doesn't like.
-#
-# rubocop:disable all
+# rubocop:disable Style/PerlBackrefs
 require_relative 'spec_helper'
 
 describe 'supermarket' do
@@ -20,14 +17,14 @@ describe 'supermarket' do
   end
 
   it 'has > 0 ICLAs' do
-    cmd = command %Q{echo 'SELECT count("iclas".*) FROM "iclas";' | /opt/supermarket/embedded/bin/psql -U supermarket -h 127.0.0.1 -p 15432 supermarket | grep '^(. row.*)'}
+    cmd = command %q{echo 'SELECT count("iclas".*) FROM "iclas";' | /opt/supermarket/embedded/bin/psql -U supermarket -h 127.0.0.1 -p 15432 supermarket | grep '^(. row.*)'}
     cmd.stdout.match(/\((\d).*/)
     res = $1.to_i
     expect(res).to be > 0
   end
 
   it 'has > 0 CCLAs' do
-    cmd = command %Q{echo 'SELECT count("cclas".*) FROM "cclas";' | /opt/supermarket/embedded/bin/psql -U supermarket -h 127.0.0.1 -p 15432 supermarket | grep '^(. row.*)'}
+    cmd = command %q{echo 'SELECT count("cclas".*) FROM "cclas";' | /opt/supermarket/embedded/bin/psql -U supermarket -h 127.0.0.1 -p 15432 supermarket | grep '^(. row.*)'}
     cmd.stdout.match(/\((\d).*/)
     res = $1.to_i
     expect(res).to be > 0
