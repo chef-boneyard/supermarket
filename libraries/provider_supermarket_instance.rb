@@ -10,18 +10,9 @@ class Chef
       action :create do
 
         config = {}
-
-        if new_resource.chef_server_url
-          config['chef_server_url'] = new_resource.chef_server_url
-        end
-
-        if new_resource.chef_oauth2_app_id
-          config['chef_oauth2_app_id'] = new_resource.chef_oauth2_app_id
-        end
-
-        if new_resource.chef_oauth2_secret
-          config['chef_oauth2_secret'] = new_resource.chef_oauth2_secret
-        end
+        config['chef_server_url'] = new_resource.chef_server_url
+        config['chef_oauth2_app_id'] = new_resource.chef_oauth2_app_id
+        config['chef_oauth2_secret'] = new_resource.chef_oauth2_secret
 
         if new_resource.ssl_cert || new_resource.ssl_key
           unless new_resource.ssl_cert && new_resource.ssl_key
