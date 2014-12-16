@@ -15,7 +15,7 @@ describe 'supermarket::default' do
     stub_command('echo \'dx\' | psql supermarket_production | grep pg_trgm').and_return(false)
     stub_command('git --version >/dev/null').and_return(false)
     stub_command('which nginx').and_return(false)
-    stub_command("ls /var/lib/postgresql/9.3/main/recovery.conf").and_return(false)
+    stub_command('ls /var/lib/postgresql/9.3/main/recovery.conf').and_return(false)
   end
 
   let(:chef_run) do
