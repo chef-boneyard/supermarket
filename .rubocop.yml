@@ -5,7 +5,6 @@ AllCops:
     - Gemfile
     - Rakefile
     - Thorfile
-    - Guardfile
   Exclude:
     - vendor/**
 

@@ -1,2 +1,10 @@
 SingleSpaceBeforeFirstArg:
   Enabled: false
+Lint/UselessAssignment:
+  Enabled: false
+Lint/UnusedBlockArgument:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/NumericLiterals:
+  Enabled: false

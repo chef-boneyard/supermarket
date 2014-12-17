@@ -1,29 +1,6 @@
-require 'chefspec'
-require 'chefspec/berkshelf'
 
-require 'json'
-
-at_exit { ChefSpec::Coverage.report! }
-
-RSpec.configure do |c|
-  c.filter_run :focus => true
-  c.run_all_when_everything_filtered = true
-end
-
-def configure_chef
-  RSpec.configure do |config|
-    config.platform = 'ubuntu'
-    config.version = '14.04'
-    config.log_level = :error
-  end
-end
-
-def get_databag_item(name, item)
-  filename = File.join('.', 'data_bags', name, "#{item}.json")
-  { item => JSON.parse(IO.read(filename)) }
-end
-
-dummy_ssl_cert = <<EOF
+def dummy_ssl_cert
+  an_cert = <<EOF
 -----BEGIN CERTIFICATE-----
 MIIEBjCCAu4CCQD2dsoGHTvwBDANBgkqhkiG9w0BAQUFADCBxDELMAkGA1UEBhMC
 VVMxCzAJBgNVBAgMAldBMRAwDgYDVQQHDAdTZWF0dGxlMRcwFQYDVQQKDA5NeSBT
@@ -49,8 +26,11 @@ SO1aO/XtrJNneTqhpv3L0tahd5lSi9zWhy9TuPOhrCuxRSFcxTqQ3MJYyK/hm2Oe
 IVNDTwdjokrMBkQ6ZYL3yDFmDEuGE5vWCpI=
 -----END CERTIFICATE-----
 EOF
+  an_cert
+end
 
-dummy_ssl_key = <<EOF
+def dummy_ssl_key
+  an_key = <<EOF
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA+9H4INIJDTZiSIwATRUohx3GF7sRwKxm2YdNVVzd1EyzdcxJ
 uqZ4zeYISxbM7rmCqeOlWcYf4PojAB/z1S8JhLRtTAalB+54vV4S9Z7OPWtLWAfj
@@ -79,3 +59,5 @@ bhyjcuvPgry0hINiOS09Bv0knE58vuLXHTB9RCDOx8u0tH7XpdFzkObIONNGqw1T
 lorovCeCU9FfwOS5LxMDQyApyFg6KfieoRPM4BFKeWAIrk4JBJ1Nqg==
 -----END RSA PRIVATE KEY-----
 EOF
+  an_key
+end

@@ -52,3 +52,7 @@ suites:
         force_ssl: true
         allow_http_domain:
           - 'http-only.example.com'
+  - name: supermarket_instance
+    run_list:
+      - recipe[supermarket_instance_test::default]
+    attributes: {}
