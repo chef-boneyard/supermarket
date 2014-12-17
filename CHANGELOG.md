@@ -1,3 +1,7 @@
+v3.1.0 (2014-12-17)
+-------------------
+- [#82] Add a supermarket_instance resource
+
 v3.0.0 (2014-11-21)
 --------------------
 - [#79] Correct references to ssl cert and key path
