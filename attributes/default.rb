@@ -19,7 +19,7 @@
 
 default['postgres']['user'] = 'supermarket'
 default['postgres']['database'] = 'supermarket_production'
-default['postgresql']['version'] = '9.1'
+default['postgresql']['version'] = '9.3'
 
 default['redis']['maxmemory'] = '64mb'
 
