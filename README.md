@@ -1,6 +1,6 @@
 # Supermarket
 
-This cookbook deploys the [Supermarket application](https://github.com/opscode/supermarket).
+This cookbook deploys the [Supermarket application](https://github.com/chef/supermarket).
 
 ## About
 
@@ -15,7 +15,7 @@ within the app/supermarket.json data bag.
 ## Issues and Pull Requests
 
 Issues for this cookbook should be opened on
-[Supermarket GitHub Issues](https://github.com/opscode/supermarket/issues). Pull
+[Supermarket GitHub Issues](https://github.com/chef/supermarket/issues). Pull
 requests can be opened on this repository, but it would be nice to have an
 associated issue on the Supermarket repository.
 
