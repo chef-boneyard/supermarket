@@ -34,7 +34,7 @@ end
 
 execute 'postgres[privileges]' do
   user 'postgres'
-  command "psql -c 'GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA #{node['postgres']['database']} TO #{node['postgres']['user']};'"
+  command "psql -c 'GRANT ALL ON DATABASE #{node['postgres']['database']} TO #{node['postgres']['user']};'"
 end
 
 execute 'postgres[extensions][plpgsql]' do
