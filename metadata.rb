@@ -20,7 +20,7 @@ recipe 'supermarket::vagrant',
        'Installs Supermarket and all dependencies for development'
 
 provides 'service[nginx]'
-provides 'service[postgres]'
+provides 'service[postgresql]'
 provides 'service[redis-server]'
 provides 'service[unicorn]'
 
@@ -36,10 +36,10 @@ attribute 'postgres/database',
           :type         => 'string',
           :default      => 'supermarket_production'
 
-attribute 'postgres/auth_method',
-          :display_name => 'PostgreSQL authentication method',
+attribute 'postgresql/version',
+          :display_name => 'PostgreSQL server version',
           :type         => 'string',
-          :default      => 'peer'
+          :default      => '9.1'
 
 grouping 'redis', :title => 'Redis server options'
 
