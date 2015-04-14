@@ -93,6 +93,14 @@ deploy_revision node['supermarket']['home'] do
       variables(app: app)
     end
 
+    execute 'bundle config for pg' do
+      cwd release_path
+      user 'supermarket'
+      group 'supermarket'
+      command "bundle config --local build.pg --with-pg-config=/usr/pgsql-#{node['postgresql']['version']}/bin/pg_config"
+      only_if { node['platform_family'] == 'rhel' && node['postgresql']['enable_pgdg_yum'] }
+    end
+
     execute 'bundle install' do
       cwd release_path
       user 'supermarket'
