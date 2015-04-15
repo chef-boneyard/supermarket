@@ -26,6 +26,9 @@ platforms:
   - name: centos-6.5
     run_list:
       - recipe[yum]
+    attributes:
+      postgresql:
+        enable_pgdg_yum: true
 
 suites:
   - name: default
@@ -33,7 +36,5 @@ suites:
     run_list:
       - recipe[supermarket::default]
     attributes:
-      postgres:
-        auth_method: trust
       nginx:
         default_site_enabled: false

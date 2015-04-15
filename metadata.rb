@@ -39,7 +39,7 @@ attribute 'postgres/database',
 attribute 'postgresql/version',
           :display_name => 'PostgreSQL server version',
           :type         => 'string',
-          :default      => '9.1'
+          :default      => '9.3'
 
 grouping 'redis', :title => 'Redis server options'
 
