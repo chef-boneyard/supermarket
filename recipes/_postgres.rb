@@ -23,18 +23,18 @@ include_recipe 'postgresql::contrib'
 execute 'postgres[user]' do
   user 'postgres'
   command "psql -c 'CREATE ROLE #{node['postgres']['user']} WITH LOGIN;'"
-  not_if  "echo 'SELECT 1 FROM pg_roles WHERE rolname = \'#{node['postgres']['user']}\';' | psql | grep -q 1"
+  not_if  "psql -c \"SELECT 1 FROM pg_roles WHERE rolname = \'#{node['postgres']['user']}\';\" | grep -q 1"
 end
 
 execute 'postgres[database]' do
   user 'postgres'
   command "psql -c 'CREATE DATABASE #{node['postgres']['database']};'"
-  not_if  "echo 'SELECT 1 FROM pg_database WHERE datname = \'#{node['postgres']['database']}\';' | psql | grep -q 1"
+  not_if  "psql -c \"SELECT 1 FROM pg_database WHERE datname = \'#{node['postgres']['database']}\';\" | grep -q 1"
 end
 
 execute 'postgres[privileges]' do
   user 'postgres'
-  command "psql -c 'GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA #{node['postgres']['database']} TO #{node['postgres']['user']};'"
+  command "psql -c 'GRANT ALL ON DATABASE #{node['postgres']['database']} TO #{node['postgres']['user']};'"
 end
 
 execute 'postgres[extensions][plpgsql]' do
