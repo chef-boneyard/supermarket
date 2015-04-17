@@ -1,3 +1,13 @@
+v3.2.0 (2015-04-17)
+-------------------
+- [#90] Fix compatibility with RHEL/CentOS 6
+- [#89] Fix psql commands in PostgreSQL recipe
+- [#87] Use the correct `X-Forwarded-Proto` headers in Nginx
+- [#86] Fix PostgreSQL attribute names
+- [#85] Include postgresql-contrib package including pg\_tgrm
+- [#84] Use correct exit codes for `psql` commands
+- [#83] Use HTTPS URLs in Berksfile for firewall friendliness
+
 v3.1.0 (2014-12-17)
 -------------------
 - [#82] Add a supermarket_instance resource

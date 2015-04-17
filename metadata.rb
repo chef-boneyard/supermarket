@@ -1,7 +1,7 @@
 name 'supermarket'
-version '3.1.0'
+version '3.2.0'
 maintainer 'Chef Software, Inc.'
-maintainer_email 'cookbooks@getchef.com'
+maintainer_email 'cookbooks@chef.io'
 license 'Apache v2.0'
 description 'Stands up the Supermarket application stack'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
