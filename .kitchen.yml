@@ -20,15 +20,9 @@ platforms:
   - name: ubuntu-14.04
     run_list:
     - recipe[apt]
-    attributes:
-      postgres:
-        version: "9.3"
-  - name: centos-6.5
+  - name: opscode-centos-6.5
     run_list:
       - recipe[yum]
-    attributes:
-      postgresql:
-        enable_pgdg_yum: true
 
 suites:
   - name: default
