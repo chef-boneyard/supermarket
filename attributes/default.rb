@@ -22,12 +22,12 @@ default['postgres']['database'] = 'supermarket_production'
 default['postgresql']['version'] = '9.3'
 
 case node['platform_family']
-  when 'debian'
-    if node['platform_version'] == '12.04'
-      default['postgresql']['enable_pgdg_apt'] = true
-    end
-  when 'rhel'
-    default['postgresql']['enable_pgdg_yum'] = true
+when 'debian'
+  if node['platform_version'] == '12.04'
+    default['postgresql']['enable_pgdg_apt'] = true
+  end
+when 'rhel'
+  default['postgresql']['enable_pgdg_yum'] = true
 end
 
 default['redis']['maxmemory'] = '64mb'
