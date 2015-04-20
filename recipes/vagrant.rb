@@ -19,7 +19,7 @@
 
 include_recipe 'supermarket::_postgres'
 include_recipe 'supermarket::_redis'
-include_recipe 'supermarket::_git'
+include_recipe 'git'
 include_recipe 'supermarket::_ruby'
 
 execute 'dotenv[setup]' do

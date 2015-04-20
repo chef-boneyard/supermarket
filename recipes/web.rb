@@ -18,7 +18,7 @@
 #
 
 include_recipe 'supermarket::_sidekiq'
-include_recipe 'supermarket::_git'
+include_recipe 'git'
 include_recipe 'supermarket::_ruby'
 include_recipe 'supermarket::_nginx'
 include_recipe 'supermarket::_runit'
