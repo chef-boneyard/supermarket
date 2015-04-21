@@ -35,7 +35,7 @@ class Chef
 
         ['chef_server_url', 'chef_oauth2_app_id', 'chef_oauth2_secret'].each do |required|
           unless config[required]
-            raise '#{required} is a required attribute'
+            raise "#{required} is a required attribute"
           end
         end
 
