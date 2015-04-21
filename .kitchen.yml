@@ -23,7 +23,7 @@ platforms:
     attributes:
       postgres:
         version: "9.3"
-  - name: centos-6.5
+  - name: centos-6.6
     run_list:
       - recipe[yum]
     attributes:
