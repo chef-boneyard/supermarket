@@ -1,3 +1,10 @@
+v3.2.1 (2015-04-22)
+-------------------
+- [#94] Remove references to \_git recipe
+- [#93] Use correct user in PostgreSQL recipe guards
+- [#92] Fix double quotes in required attributes error message
+- [#91] Enable pgdg Apt repo; remove duplicate kitchen attributes
+
 v3.2.0 (2015-04-17)
 -------------------
 - [#90] Fix compatibility with RHEL/CentOS 6
