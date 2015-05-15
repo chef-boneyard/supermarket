@@ -37,9 +37,8 @@ directory "#{node['supermarket']['home']}/shared/bundle" do
 end
 
 if node['supermarket']['chef_vault']
-  chef_gem 'chef-vault'
-  require 'chef-vault'
-  app = ChefVault::Item.load(:apps, node['supermarket']['data_bag'])
+  include_recipe 'chef-vault'
+  app = chef_vault_item(:apps, node['supermarket']['data_bag'])
 else
   app = data_bag_item(:apps, node['supermarket']['data_bag'])
 end
