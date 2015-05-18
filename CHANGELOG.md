@@ -1,3 +1,8 @@
+v3.3.0 (2015-05-18)
+-------------------
+- [#96] Use the chef\_vault\_item helper
+- [#95] Use CentOS 6.6 in Test Kitchen
+
 v3.2.1 (2015-04-22)
 -------------------
 - [#94] Remove references to \_git recipe
