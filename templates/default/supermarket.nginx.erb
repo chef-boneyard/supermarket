@@ -89,9 +89,8 @@ server {
   location ~ ^/(assets|system)/ {
     root <%= node['supermarket']['home'] %>/current/public;
 
-    # to serve pre-gzipped version
-
 <% if node['nginx']['gzip_static'] == 'on' -%>
+    # to serve pre-gzipped version
     gzip_static on;
     expires 1y;
     add_header Cache-Control public;
