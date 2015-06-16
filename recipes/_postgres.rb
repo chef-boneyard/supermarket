@@ -45,6 +45,6 @@ end
 
 execute 'postgres[extensions][pg_trgm]' do
   user 'postgres'
-  command "psql -c #{node['postgres']['database']} 'CREATE EXTENSION IF NOT EXISTS pg_trgm'"
+  command "psql #{node['postgres']['database']} -c 'CREATE EXTENSION IF NOT EXISTS pg_trgm'"
   not_if "echo '\dx' | psql #{node['postgres']['database']} | grep pg_trgm", :user => 'postgres'
 end
