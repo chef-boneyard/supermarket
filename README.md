@@ -2,6 +2,10 @@
 
 This cookbook deploys the [Supermarket application](https://github.com/opscode/supermarket).
 
+## DEPRECATED
+
+This cookbook is now deprecated and will no longer be maintained by Chef.  We recommend using a cookbook which installs Supermarket through the Supermarket omnibus package such as [supermarket-omnibus-cookbook](https://github.com/irvingpop/supermarket-omnibus-cookbook).
+
 ## About
 
 This cookbook is split up into three different roles: Web, Redis, and Database. If you plan on running Supermarket
