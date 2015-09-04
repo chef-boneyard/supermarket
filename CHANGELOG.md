@@ -1,3 +1,7 @@
+v3.3.1 (2015-09-04)
+-------------------
+- Cookbook deprecated in favor of [supermarket-omnnibus-cookbook](https://github.com/irvingpop/supermarket-omnibus-cookbook)
+
 v3.3.0 (2015-05-18)
 -------------------
 - [#96] Use the chef\_vault\_item helper
