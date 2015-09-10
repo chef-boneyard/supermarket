@@ -26,6 +26,10 @@ provides 'service[unicorn]'
 
 grouping 'postgres', :title => 'PostgreSQL options'
 
+source_url 'https://github.com/chef-cookbooks/supermarket' if respond_to?(:source_url)
+issues_url 'https://github.com/chef-cookbooks/supermarket/issues' if respond_to?(:issues_url)
+
+
 attribute 'postgres/user',
           :display_name => 'PostgreSQL username',
           :type         => 'string',
