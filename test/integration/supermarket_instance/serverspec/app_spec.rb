@@ -29,5 +29,4 @@ describe 'supermarket' do
     res = $1.to_i
     expect(res).to be > 0
   end
-
 end

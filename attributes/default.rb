@@ -56,7 +56,7 @@ default['supermarket']['web_concurrency'] = node['cpu']['total'].to_i * 2
 # don't set the ssl_crt_path or ssl_key_path. To use SSL directly on
 # the nginx proxy in front of the app, set force_ssl to true and set
 # the path attributes below.
-default['supermarket']['force_ssl']  = false
+default['supermarket']['force_ssl'] = false
 
 # To use custom SSL certificate/key, name the files, and in a separate
 # cookbook, manage them with your favorite method (chef-vault items,

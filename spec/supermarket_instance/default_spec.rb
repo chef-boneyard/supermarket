@@ -1,13 +1,12 @@
 require 'spec_helper'
 
 describe 'supermarket_instance_test::default' do
-
   let(:chef_run) do
     ChefSpec::SoloRunner.new(
-      :step_into => 'supermarket_instance',
-      :platform => 'ubuntu',
-      :version => '14.04',
-      :log_level => :error
+      step_into: 'supermarket_instance',
+      platform: 'ubuntu',
+      version: '14.04',
+      log_level: :error
     ) do |node|
     end.converge(described_recipe)
   end
@@ -17,7 +16,6 @@ describe 'supermarket_instance_test::default' do
   end
 
   context 'inside of the supermarket_instance' do
-
     it 'installs supermarket package' do
       expect(chef_run).to install_package('supermarket')
     end
@@ -40,22 +38,19 @@ describe 'supermarket_instance_test::default' do
     end
 
     context 'on ubuntu 14.04' do
-
       it 'sets up an apt repo' do
         expect(chef_run).to create_packagecloud_repo('chef/stable') \
           .with_type('deb')
       end
-
     end
 
     context 'on CentOS 6.5' do
-
       let(:chef_run) do
         ChefSpec::SoloRunner.new(
-          :step_into => 'supermarket_instance',
-          :platform => 'centos',
-          :version => '6.5',
-          :log_level => :error
+          step_into: 'supermarket_instance',
+          platform: 'centos',
+          version: '6.5',
+          log_level: :error
         ) do |node|
         end.converge(described_recipe)
       end
@@ -64,7 +59,6 @@ describe 'supermarket_instance_test::default' do
         expect(chef_run).to create_packagecloud_repo('chef/stable') \
           .with_type('rpm')
       end
-
     end
   end
 end

@@ -8,7 +8,6 @@ class Chef
       end
 
       action :create do
-
         config = {}
         config['chef_server_url'] = new_resource.chef_server_url
         config['chef_oauth2_app_id'] = new_resource.chef_oauth2_app_id
@@ -33,7 +32,7 @@ class Chef
 
         config.merge!(new_resource.options)
 
-        ['chef_server_url', 'chef_oauth2_app_id', 'chef_oauth2_secret'].each do |required|
+        %w(chef_server_url chef_oauth2_app_id chef_oauth2_secret).each do |required|
           unless config[required]
             raise "#{required} is a required attribute"
           end
@@ -85,7 +84,6 @@ class Chef
           command '/opt/supermarket/bin/supermarket-ctl reconfigure'
           action :nothing
         end
-
       end
     end
   end

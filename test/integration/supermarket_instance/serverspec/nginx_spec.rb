@@ -12,5 +12,4 @@ describe 'nginx' do
   it 'listens on port 443' do
     expect(port 443).to be_listening
   end
-
 end

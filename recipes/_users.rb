@@ -27,7 +27,7 @@ user 'supermarket' do
   home node['supermarket']['home']
   comment 'Supermarket'
   shell '/bin/false'
-  supports :manage_home => true
+  supports manage_home: true
 end
 
 file ::File.join(node['supermarket']['home'], '.gemrc') do

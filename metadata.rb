@@ -24,47 +24,46 @@ provides 'service[postgresql]'
 provides 'service[redis-server]'
 provides 'service[unicorn]'
 
-grouping 'postgres', :title => 'PostgreSQL options'
+grouping 'postgres', title: 'PostgreSQL options'
 
 source_url 'https://github.com/chef-cookbooks/supermarket' if respond_to?(:source_url)
 issues_url 'https://github.com/chef-cookbooks/supermarket/issues' if respond_to?(:issues_url)
 
-
 attribute 'postgres/user',
-          :display_name => 'PostgreSQL username',
-          :type         => 'string',
-          :default      => 'supermarket'
+          display_name: 'PostgreSQL username',
+          type: 'string',
+          default: 'supermarket'
 
 attribute 'postgres/database',
-          :display_name => 'PostgreSQL database name',
-          :type         => 'string',
-          :default      => 'supermarket_production'
+          display_name: 'PostgreSQL database name',
+          type: 'string',
+          default: 'supermarket_production'
 
 attribute 'postgresql/version',
-          :display_name => 'PostgreSQL server version',
-          :type         => 'string',
-          :default      => '9.3'
+          display_name: 'PostgreSQL server version',
+          type: 'string',
+          default: '9.3'
 
-grouping 'redis', :title => 'Redis server options'
+grouping 'redis', title: 'Redis server options'
 
 attribute 'redis/maxmemory',
-          :display_name => 'Maximum memory used by redis server',
-          :type         => 'string',
-          :default      => '64mb'
+          display_name: 'Maximum memory used by redis server',
+          type: 'string',
+          default: '64mb'
 
-grouping 'supermarket', :title => 'Supermarket options'
+grouping 'supermarket', title: 'Supermarket options'
 
 attribute 'supermarket/home',
-          :display_name => 'Directory to deploy Supermarket application',
-          :type         => 'string',
-          :default      => '/srv/supermarket'
+          display_name: 'Directory to deploy Supermarket application',
+          type: 'string',
+          default: '/srv/supermarket'
 
 attribute 'supermarket/host',
-          :display_name => 'Hostname of Supermarket application',
-          :type         => 'string',
-          :default      => 'supermarket.getchef.com'
+          display_name: 'Hostname of Supermarket application',
+          type: 'string',
+          default: 'supermarket.getchef.com'
 
 attribute 'supermarket/sidekiq/concurrency',
-          :display_name => 'Number of concurrent jobs executed by sidekiq',
-          :type         => 'string',
-          :default      => '25'
+          display_name: 'Number of concurrent jobs executed by sidekiq',
+          type: 'string',
+          default: '25'
