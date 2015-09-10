@@ -20,3 +20,5 @@ MethodLength:
   Enabled: false
 SignalException:
   Enabled: false
+Style/EachWithObject:
+  Enabled: false
