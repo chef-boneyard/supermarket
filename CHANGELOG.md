@@ -1,3 +1,7 @@
+supermarket Cookbook CHANGELOG
+============================
+This file is used to list changes made in each version of the supermarket cookbook.
+
 v3.3.1 (2015-09-04)
 -------------------
 - Cookbook deprecated in favor of [supermarket-omnnibus-cookbook](https://github.com/irvingpop/supermarket-omnibus-cookbook)
