@@ -1,22 +1,25 @@
 source 'https://rubygems.org'
 
-gem 'rake'
-gem 'berkshelf', '~> 3.1.5'
-
-group :development do
+group :lint do
   gem 'foodcritic', '~> 4.0'
-  gem 'license_finder', '~> 1.1.1'
-  gem 'rubocop', '~> 0.26.1'
-  gem 'pry'
-  gem 'guard-rspec'
+  gem 'rubocop', '~> 0.33'
+  gem 'rake'
 end
 
-group :test do
-  gem 'chefspec', '~> 4.2.0.beta.1'
+group :unit do
+  gem 'berkshelf',  '~> 3.2'
+  gem 'chefspec',   '~> 4.3'
 end
 
-group :integration do
-  gem 'serverspec', '~> 2.1.0'
-  gem 'test-kitchen', '~> 1.2.1'
-  gem 'kitchen-vagrant', '~> 0.15.0'
+group :kitchen_common do
+  gem 'test-kitchen', '~> 1.4'
+end
+
+group :kitchen_vagrant do
+  gem 'kitchen-vagrant', '~> 0.18'
+end
+
+group :kitchen_cloud do
+  gem 'kitchen-digitalocean'
+  gem 'kitchen-ec2'
 end
