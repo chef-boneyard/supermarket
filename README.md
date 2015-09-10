@@ -1,5 +1,8 @@
 # Supermarket
 
+[![Build Status](https://travis-ci.org/chef-cookbooks/supermarket.svg?branch=master)](http://travis-ci.org/chef-cookbooks/supermarket)
+[![Cookbook Version](https://img.shields.io/cookbook/v/supermarket.svg)](https://supermarket.chef.io/cookbooks/supermarket)
+
 This cookbook deploys the [Supermarket application](https://github.com/opscode/supermarket).
 
 ## DEPRECATED
@@ -35,7 +38,7 @@ everybody, all issues are tracked on that repository.
 - Author: Joshua Timberman (<joshua@getchef.com>)
 - Author: Gleb M Borisov (<borisov.gleb@gmail.com>)
 
-- Copyright (C) 2014, Chef Software, Inc. (<legal@getchef.com>)
+- Copyright (C) 2014-2015, Chef Software, Inc. (<legal@getchef.com>)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
