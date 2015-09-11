@@ -33,7 +33,7 @@ end
 default['redis']['maxmemory'] = '64mb'
 
 default['supermarket']['home'] = '/srv/supermarket'
-default['supermarket']['host'] = 'supermarket.getchef.com'
+default['supermarket']['host'] = 'supermarket.chef.io'
 default['supermarket']['protocol'] = 'https'
 default['supermarket']['sidekiq']['concurrency'] = '25'
 default['supermarket']['database']['pool'] = 25

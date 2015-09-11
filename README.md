@@ -35,10 +35,10 @@ everybody, all issues are tracked on that repository.
 - Author: Brian Cobb (<brian@gofullstack.com>)
 - Author: Seth Vargo (<sethvargo@gmail.com>)
 - Author: Tristan O'Neil (<tristanoneil@gmail.com>)
-- Author: Joshua Timberman (<joshua@getchef.com>)
+- Author: Joshua Timberman (<joshua@chef.io>)
 - Author: Gleb M Borisov (<borisov.gleb@gmail.com>)
 
-- Copyright (C) 2014-2015, Chef Software, Inc. (<legal@getchef.com>)
+- Copyright (C) 2014-2015, Chef Software, Inc. (<legal@chef.io>)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

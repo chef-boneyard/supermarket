@@ -61,7 +61,7 @@ attribute 'supermarket/home',
 attribute 'supermarket/host',
           display_name: 'Hostname of Supermarket application',
           type: 'string',
-          default: 'supermarket.getchef.com'
+          default: 'supermarket.chef.io'
 
 attribute 'supermarket/sidekiq/concurrency',
           display_name: 'Number of concurrent jobs executed by sidekiq',

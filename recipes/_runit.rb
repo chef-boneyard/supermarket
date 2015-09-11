@@ -1,6 +1,6 @@
 #
 # Author:: Tristan O'Neil (<tristanoneil@gmail.com>)
-# Author:: Joshua Timberman (<joshua@getchef.com>)
+# Author:: Joshua Timberman (<joshua@chef.io>)
 # Recipe:: _runit
 #
 # Copyright 2014 Chef Software, Inc.

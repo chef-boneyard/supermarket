@@ -1,5 +1,5 @@
 #
-# Author:: Christopher Webber <cwebber@getchef.com>
+# Author:: Christopher Webber <cwebber@chef.io>
 # Recipe:: supermarket::web
 #
 # Copyright 2014 Chef Software, Inc.
