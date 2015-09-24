@@ -7,7 +7,7 @@ describe 'supermarket_instance_test::working_ssl' do
       platform: 'ubuntu',
       version: '14.04',
       log_level: :error
-    ) do |node|
+    ) do |_node|
     end.converge(described_recipe)
   end
 

@@ -7,7 +7,7 @@ describe 'supermarket_instance_test::duplicate_attrs' do
       platform: 'ubuntu',
       version: '14.04',
       log_level: :warn
-    ) do |node|
+    ) do |_node|
     end.converge(described_recipe)
   end
 

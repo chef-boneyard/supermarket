@@ -15,7 +15,7 @@ class Chef
 
         if new_resource.ssl_cert || new_resource.ssl_key
           unless new_resource.ssl_cert && new_resource.ssl_key
-            raise 'You must specify ssl_cert and ssl_key or none at all.'
+            fail 'You must specify ssl_cert and ssl_key or none at all.'
           end
           config['ssl'] = {}
           config['ssl']['certificate'] = '/etc/supermarket/ssl/ssl.crt'
@@ -25,7 +25,7 @@ class Chef
         config.keys.each do |attrs|
           new_resource.options.keys.each do |opts|
             if opts == attrs
-              raise "You cannot set #{opts} when it is already set as an attribute"
+              fail "You cannot set #{opts} when it is already set as an attribute"
             end
           end
         end
@@ -33,9 +33,7 @@ class Chef
         config.merge!(new_resource.options)
 
         %w(chef_server_url chef_oauth2_app_id chef_oauth2_secret).each do |required|
-          unless config[required]
-            raise "#{required} is a required attribute"
-          end
+          fail "#{required} is a required attribute" unless config[required]
         end
 
         case node['platform_family']
@@ -48,7 +46,7 @@ class Chef
             type 'rpm'
           end
         else
-          raise "I don't know how to install supermarket for platform family: #{node['platform_family']}"
+          fail "I don't know how to install supermarket for platform family: #{node['platform_family']}"
         end
 
         package 'supermarket'

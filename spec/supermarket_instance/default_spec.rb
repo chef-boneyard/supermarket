@@ -7,7 +7,7 @@ describe 'supermarket_instance_test::default' do
       platform: 'ubuntu',
       version: '14.04',
       log_level: :error
-    ) do |node|
+    ) do |_node|
     end.converge(described_recipe)
   end
 
@@ -51,7 +51,7 @@ describe 'supermarket_instance_test::default' do
           platform: 'centos',
           version: '6.5',
           log_level: :error
-        ) do |node|
+        ) do |_node|
         end.converge(described_recipe)
       end
 
